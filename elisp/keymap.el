@@ -63,3 +63,41 @@
     (advice-add 'evil-ex-search-previous :after (lambda (&rest x) (toy/force-center)))
     )
 
+;; ------------------------------ Emacs-like ------------------------------
+
+(defun toy/backward-kill-line (arg)
+    (interactive "p")
+    (kill-line (- 1 arg)))
+
+;; Emacs-like in ex mode
+(evil-define-key nil evil-ex-completion-map
+    "\C-a" 'move-beginning-of-line
+    "\C-e" 'move-end-of-line
+    "\C-f" 'forward-char
+    "\C-b" 'backward-char
+
+    "\C-d" 'evil-delete-char
+    "\C-h" 'evil-delete-backward-char
+
+    "\C-k" 'evil-delete-line
+    "\C-u" 'toy/backward-kill-line)
+
+;; Emacs-like in insert mode
+(evil-define-key 'insert 'global
+    "\C-a" #'evil-first-non-blank
+    "\C-e" #'end-of-line
+    "\C-f" #'evil-forward-char
+    "\C-b" #'evil-backward-char
+
+    "\C-d" #'evil-delete-char
+    "\C-h" #'evil-delete-backward-char
+
+    ;; NOTE: it overwrites digraph key
+    "\C-k" 'evil-delete-line
+    "\C-u" #'toy/backward-kill-line
+
+    ;; NOTE: prefer to use `C-n` and `C-p` for completion
+    ;; "\C-n" 'evil-next-line
+    ;; "\C-p" 'evil-previous-line
+    )
+
