@@ -251,6 +251,8 @@
     ;; zen/zoom
     " zz" #'olivetti-mode
     " zx" #'zoom-window-zoom
+
+    " w" #'toy/hydra-window/body
     )
 
 ;; [f]ind

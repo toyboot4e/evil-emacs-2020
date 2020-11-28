@@ -193,6 +193,10 @@
                 "*" 'swiper-thing-at-point
                 ))
 
+(use-package hydra
+    ;; https://github.com/abo-abo/hydra
+    :defer t)
+
 ;; ------------------------------ DSLs ------------------------------
 
 (use-package gitignore-mode
