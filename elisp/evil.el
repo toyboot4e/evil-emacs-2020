@@ -125,6 +125,18 @@
     (define-key help-map (kbd "M") 'which-key-show-major-mode)
     (which-key-mode))
 
+;; Improve *Help*
+(use-package helpful
+    :bind
+    ([remap describe-command] . helpful-command)
+    ([remap describe-key] . helpful-key)
+    :init
+    ;; press `q` or `<escape>` to quit (kill) the buffer
+    (evil-define-key 'normal helpful-mode-map "q" #'kill-this-buffer)
+    ;; press `K` to see the help!
+    (evil-define-key 'normal 'global "K" #'helpful-at-point)
+    )
+
 ;; ------------------------------ Programming ------------------------------
 
 (progn ;; ELisp
