@@ -100,6 +100,15 @@
     (evil-set-undo-system 'undo-tree)
     (global-undo-tree-mode))
 
+(use-package evil-surround
+    :config (global-evil-surround-mode))
+
+(use-package expand-region
+    :config
+    (evil-define-key 'visual 'global
+        "v" #'er/expand-region
+        "V" #'er/contract-region))
+
 ;; ------------------------------ Programming ------------------------------
 
 (progn ;; ELisp
