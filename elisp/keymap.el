@@ -147,8 +147,14 @@
 
 (evil-define-key 'normal 'global
     ;; cycle through buffers
-    "[b" (lambda () (interactive) (toy/skip-star #'evil-prev-buffer))
-    "]b" (lambda () (interactive) (toy/skip-star #'evil-next-buffer))
+    ;; "[b" (lambda () (interactive) (toy/skip-star #'evil-prev-buffer))
+    ;; "]b" (lambda () (interactive) (toy/skip-star #'evil-next-buffer))
+    "[b" #'centaur-tabs-backward
+    "]b" #'centaur-tabs-forward
+    "[g" #'centaur-tabs-backward-group
+    "]g" #'centaur-tabs-forward-group
+    "[{" #'centaur-tabs-move-current-tab-to-left
+    "]}" #'centaur-tabs-move-current-tab-to-right
 
     ;; goto previous/next hunk and center cursor
     "[c" (lambda () (interactive)
