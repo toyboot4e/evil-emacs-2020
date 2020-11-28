@@ -36,3 +36,30 @@
               (paragraph-separate (default-value 'paragraph-separate)))
             ad-do-it)))
 
+;; ------------------------------ Evil policies ------------------------------
+
+(progn ;; [Evil] Use blackhole register for some keys
+    ;; seems like we can't use keyboard macros for these mappings (?)
+
+    ;; `x` -> `"_x`
+    (evil-define-operator toy/null-x (beg end type register)
+        :motion evil-forward-char
+        (interactive "<R><x>")
+        (evil-delete beg end type ?_))
+    (define-key evil-normal-state-map "x" 'toy/null-x)
+
+    ;; `s` -> `"_s` (use `d` to copy to the register)
+    (evil-define-operator toy/null-s (beg end type register)
+        :motion evil-forward-char
+        (interactive "<R><x>")
+        (evil-change beg end type ?_))
+    (define-key evil-normal-state-map "s" 'toy/null-s)
+
+    ;; more generic helper: https://github.com/syl20bnr/spacemacs/issues/6977#issuecomment-24^4014379
+    )
+
+(progn ;; [Evil] Center cursor on search (`n` -> `nzz`, `N` -> `Nzz`)
+    (advice-add 'evil-ex-search-next :after (lambda (&rest x) (toy/force-center)))
+    (advice-add 'evil-ex-search-previous :after (lambda (&rest x) (toy/force-center)))
+    )
+
