@@ -1,3 +1,8 @@
+;; Put auto-generated files in `tmp` directory
+(setq projectile-cache-file  (concat user-emacs-directory "tmp/projectile.cache")
+      projectile-known-projects-file  (concat user-emacs-directory "tmp/projectile-bookmarks.eld")
+      )
+
 ;; ------------------------------ Widgets ------------------------------
 
 (use-package centaur-tabs
