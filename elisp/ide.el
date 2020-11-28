@@ -61,6 +61,13 @@
                 ;; Vim-like
                 ("C-f" . ivy-scroll-up-command)
                 ("C-b" . ivy-scroll-down-command)
+                ;; press `C-l` to preview (default: `C-M-m`)
+                ("C-l" . ivy-call)
+                ;; press `C-k k` to kill buffer (without closing Ivy)
+                ("C-k" . ivy-switch-buffer-kill)
+                ;; press `C-,` to open menu
+                ;; NOTE: never map it to `C-m`; it's carriage-return in terminal
+                ("C-," . ivy-dispatching-call)
                 )
     :config (ivy-mode))
 
