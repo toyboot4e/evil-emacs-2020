@@ -82,6 +82,18 @@
 ;; save cursor positions per file
 (save-place-mode 1)
 
+(progn ;; HACK: re-center curspr position with `save-place-mode`:
+    ;; https://www.reddit.com/r/emacs/comments/b2lokk/recenter_saved_place/
+    (defun toy/fix-save-place ()
+        "Force windows to recenter current line (with saved position)."
+        (run-with-timer 0 nil
+                        (lambda (buf)
+                            (when (buffer-live-p buf)
+                                (dolist (win (get-buffer-window-list buf nil t))
+                                    (with-selected-window win (recenter)))))
+                        (current-buffer)))
+    (add-hook 'find-file-hook #'toy/fix-save-place))
+
 (progn ;; keep a list of recently opened files
     (setq recentf-max-saved-items 1000)
     (recentf-mode 1))
