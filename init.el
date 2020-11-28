@@ -10,3 +10,5 @@
 (load-file (concat user-emacs-directory "elisp/ide.el"))
 (load-file (concat user-emacs-directory "elisp/keymap.el"))
 
+(add-hook 'window-setup-hook #'delete-other-windows)
+
