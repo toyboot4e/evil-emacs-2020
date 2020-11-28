@@ -6,6 +6,8 @@
 ;; allow loading symlinks
 (setq vc-follow-symlinks t)
 
+(load-file (concat user-emacs-directory "elisp/gc.el"))
+
 (load-file (concat user-emacs-directory "elisp/evil.el"))
 (load-file (concat user-emacs-directory "elisp/ide.el"))
 (load-file (concat user-emacs-directory "elisp/keymap.el"))
