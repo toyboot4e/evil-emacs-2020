@@ -113,3 +113,57 @@
 (evil-define-key 'insert 'global
     "\C-s" (lambda () (interactive) (evil-force-normal-state) (save-buffer)))
 
+;; ------------------------------ [] ------------------------------
+
+(progn ;; helpers
+    (defun toy/swap-line-up ()
+        (let ((col (current-column)))
+            (progn
+                (forward-line)
+                (transpose-lines -1)
+                (move-to-column col)
+                )))
+
+    (defun toy/swap-line-down ()
+        (interactive)
+        (let ((col (current-column)))
+            (progn
+                (forward-line)
+                (transpose-lines 1)
+                (forward-line -2)
+                (move-to-column col) ;; we have to manually restore the column position if we modify the line
+                )))
+
+    (defun toy/insert-line-down (count)
+        (dotimes (_ count) (save-excursion (evil-insert-newline-below)))))
+
+(evil-define-key 'normal 'global
+    ;; cycle through buffers
+    "[b" #'evil-prev-buffer
+    "]b" #'evil-next-buffer
+
+    ;; goto previous/next hunk and center cursor
+    "[c" (lambda () (interactive)
+             (git-gutter:previous-hunk 1)
+             (toy/force-center))
+    "]c" (lambda () (interactive)
+             (git-gutter:next-hunk 1)
+             (toy/force-center))
+
+    ;; go to next/previous error and center the cursor
+    "[l" (lambda () (interactive)
+             (previous-error)
+             (toy/force-center))
+    "]l" (lambda () (interactive)
+             (next-error)
+             (toy/force-center))
+
+    ;; swap lines
+    "[e" (lambda () (interactive) (toy/swap-line-up))
+    "]e" (lambda () (interactive) (toy/swap-line-down))
+
+    ;; insert newline keeping the cursor position
+    "[ " (lambda () (interactive)  (save-excursion (evil-insert-newline-above)))
+    "] " (lambda () (interactive)  (save-excursion (evil-insert-newline-below)))
+    )
+
