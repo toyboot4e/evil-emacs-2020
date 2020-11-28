@@ -28,3 +28,30 @@
     (set-selection-coding-system 'utf-8)
     (modify-coding-system-alist 'process "*" 'utf-8))
 
+;; ------------------------------ Boostrapping ------------------------------
+
+(progn ;; Package configuration
+    (setq package-user-dir (concat user-emacs-directory "elpa")
+          package-archives '(("gnu"   . "https://elpa.gnu.org/packages/")
+                             ("melpa" . "https://melpa.org/packages/")
+                             ("cselpa" . "https://elpa.thecybershadow.net/packages/")))
+
+    (setq use-package-always-ensure t
+          use-package-expand-minimally t
+          use-package-compute-statistics t
+          use-package-enable-imenu-support t))
+
+(progn ;; Boostrap `use-package`
+    ;; initialize packages (only once)
+    (unless (bound-and-true-p package--initialized)
+        (setq package-enable-at-startup nil) (package-initialize))
+
+    ;; install `use-package` if needed
+    (unless (package-installed-p 'use-package)
+        (package-refresh-contents)
+        (package-install 'use-package))
+
+    (require 'use-package) ;; to gather statistics, I guess we need the runtime after all
+    (require 'bind-key)
+    (use-package diminish :defer t))
+
