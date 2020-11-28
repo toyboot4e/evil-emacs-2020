@@ -131,12 +131,13 @@
 
 ;; Update packages automatically (every 7 days)
 (use-package auto-package-update
+    :init
+    (setq auto-package-update-last-update-day-filename
+          (concat user-emacs-directory "tmp/.last-package-update-day"))
     :config
     (setq auto-package-update-delete-old-versions t
           auto-package-update-interval 7)
-    (setq auto-package-update-last-update-day-filename
-          (concat user-emacs-directory "tmp/.last-package-update-day"))
-          (auto-package-update-maybe))
+    (auto-package-update-maybe))
 
 ;; ------------------------------ View settings ------------------------------
 
