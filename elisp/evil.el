@@ -129,6 +129,15 @@
     (require 'bind-key)
     (use-package diminish :defer t))
 
+;; Update packages automatically (every 7 days)
+(use-package auto-package-update
+    :config
+    (setq auto-package-update-delete-old-versions t
+          auto-package-update-interval 7)
+    (setq auto-package-update-last-update-day-filename
+          (concat user-emacs-directory "tmp/.last-package-update-day"))
+          (auto-package-update-maybe))
+
 ;; ------------------------------ View settings ------------------------------
 
 ;; Color scheme in use
