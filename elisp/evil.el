@@ -62,6 +62,34 @@
       scroll-margin 3                    ; scroll keeping the margins
       )
 
+;; ------------------------------ Builtin packages ------------------------------
+
+;; put auto-generated files in `tmp` directory (builtin packages)
+(setq recentf-save-file (concat user-emacs-directory "tmp/recentf")
+      save-place-file (concat user-emacs-directory "tmp/places")
+      savehist-file (concat user-emacs-directory "tmp/history")
+      auto-save-list-file-prefix (concat user-emacs-directory "tmp/auto-save-list"))
+
+(progn ;; save command history
+    (setq history-length 1000
+          history-delete-duplicates t)
+    (savehist-mode))
+
+(progn ;; sync buffers to storage per second
+    (setq auto-revert-interval 1)
+    (global-auto-revert-mode))
+
+;; save cursor positions per file
+(save-place-mode 1)
+
+(progn ;; keep a list of recently opened files
+    (setq recentf-max-saved-items 1000)
+    (recentf-mode 1))
+
+(progn ;; show duplicate file names as `file<parent-directory>`
+    (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+    (require 'uniquify))
+
 ;; ------------------------------ Boostrapping ------------------------------
 
 (progn ;; Package configuration
