@@ -28,6 +28,12 @@
     (set-selection-coding-system 'utf-8)
     (modify-coding-system-alist 'process "*" 'utf-8))
 
+;; show line numbers
+(global-display-line-numbers-mode)
+
+;; highlight current line
+(global-hl-line-mode t)
+
 ;; ------------------------------ Boostrapping ------------------------------
 
 (progn ;; Package configuration
@@ -54,6 +60,12 @@
     (require 'use-package) ;; to gather statistics, I guess we need the runtime after all
     (require 'bind-key)
     (use-package diminish :defer t))
+
+;; ------------------------------ View settings ------------------------------
+
+;; Color scheme in use
+(use-package darkokai-theme
+    :config (load-theme 'darkokai t))
 
 ;; ------------------------------ Evil ------------------------------
 
