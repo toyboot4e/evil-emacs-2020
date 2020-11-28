@@ -15,6 +15,27 @@
     :custom
     (olivetti-body-width 100))
 
+(use-package magit
+    ;; https://github.com/magit/magit
+    :commands (magit)
+    ;; NOTE: use Zen mode in `magit-status`
+    :hook (magit-status-mode  . olivetti-mode)
+    :init (setq magit-completing-read-function 'ivy-completing-read))
+
+(use-package evil-magit
+    ;; https://github.com/emacs-evil/evil-magit
+    :after (evil magit)
+    :custom
+    ;; add fold mappings (`z1`, `z2`, .., `za`, ..)
+    (evil-magit-use-z-for-folds t)
+    :config
+    ;; enable scolling key mappings
+    (evil-define-key 'normal magit-mode-map
+        "zz" #'evil-scroll-line-to-center
+        "z-" #'evil-scroll-line-to-bottom
+        (kbd "z RET") #'evil-scroll-line-to-top
+        ))
+
 (use-package centaur-tabs
     ;; https://github.com/ema2159/centaur-tabs
     ;; NOTE: it adds default bindings go to `C-c C-c`

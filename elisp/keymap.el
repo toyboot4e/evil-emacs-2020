@@ -277,3 +277,13 @@
     " gR" #'counsel-projectile-rg
     )
 
+(evil-define-key 'normal 'global
+    ;; open `magit` in other window
+    "  g" #'magit
+    ;; open `magit` in the full frame
+    "  G" (lambda () (interactive)
+              (let ((magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1))
+                  (magit)
+                  ))
+    )
+
