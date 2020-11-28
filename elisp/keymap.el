@@ -201,3 +201,32 @@
     "]w" #'evil-window-next
     )
 
+;; ------------------------------ Leaders ------------------------------
+
+(evil-define-key 'normal 'global
+    " :" #'counsel-M-x
+    " ;" #'shell-command
+    )
+
+;; [f]ind
+(evil-define-key 'normal 'global
+    ;; TIP: press `C-l` to preview, `C-k k` to kill
+    ;; TIP: press `TAB` to enter the directory
+    " ff" #'counsel-find-file
+    " fF" #'counsel-projectile-find-file
+    " fb" #'counsel-switch-buffer
+    " fB" #'counsel-switch-buffer-other-window
+    " fr" #'counsel-recentf
+    " fk" #'kill-this-buffer
+    " fK" #'evil-delete-buffer
+
+    ;; `centaur-tabs`
+    " fg" #'centaur-tabs-counsel-switch-group
+    )
+
+;; [g]rep
+(evil-define-key 'normal 'global
+    " gr" #'counsel-rg
+    " gR" #'counsel-projectile-rg
+    )
+
