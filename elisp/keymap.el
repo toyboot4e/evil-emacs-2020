@@ -244,6 +244,8 @@
 
 ;; [g]rep
 (evil-define-key 'normal 'global
+    " gb" #'swiper-isearch          ;; this buffer
+    " gB" #'swiper-all              ;; all the buffers
     " gr" #'counsel-rg
     " gR" #'counsel-projectile-rg
     )

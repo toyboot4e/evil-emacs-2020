@@ -102,3 +102,9 @@
     ;; NOTE: we can't use `counsel-evil-registers` in ex mode because both of them use minibuffer
     (add-to-list 'ivy-height-alist '(counsel-evil-registers . 20)))
 
+(use-package swiper
+    :after evil
+    :config (evil-define-key 'normal 'global
+                "*" 'swiper-thing-at-point
+                ))
+
