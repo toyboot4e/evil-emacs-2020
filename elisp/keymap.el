@@ -239,6 +239,9 @@
     " :" #'counsel-M-x
     " ;" #'shell-command
 
+    " c" #'kill-this-buffer    ;; kill buffer
+    " C" #'evil-delete-buffer  ;; kill buffer and close the window
+
     ;; neotree
     " nn" #'toy/neo-proj
     " nt" #'neotree-toggle
