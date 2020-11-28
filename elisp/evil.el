@@ -56,6 +56,12 @@
 (set-cursor-color "#8fee96")
 (set-fringe-mode 10)
 
+;; Scroll like Vim
+(setq scroll-preserve-screen-position t  ; keep the cursor position when scrolling
+      scroll-conservatively 100          ; scroll by lines, not by a half page
+      scroll-margin 3                    ; scroll keeping the margins
+      )
+
 ;; ------------------------------ Boostrapping ------------------------------
 
 (progn ;; Package configuration
