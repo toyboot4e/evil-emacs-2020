@@ -32,6 +32,26 @@
     (centaur-tabs-headline-match)
     (centaur-tabs-mode t))
 
+(use-package neotree
+    :commands (neotree-quick-look)
+    :init
+    (setq neo-theme (if (display-graphic-p) 'icons 'arrows)
+          neo-window-position 'right  ;; show on right side
+          neo-window-width 25         ;; preferred with
+          neo-window-fixed-size nil   ;; resize with mouse
+          neo-show-hidden-files t     ;; show hidden files
+          )
+
+    :config
+    ;; [GUI] set fontsize
+    (when (display-graphic-p)
+        (add-hook 'neo-after-create-hook
+                  (lambda (_)
+                      (text-scale-adjust 0)
+                      (text-scale-decrease 0.5) ;; the bigger, the smaller
+                      )))
+    )
+
 ;; ------------------------------ Intelligence ------------------------------
 
 (use-package company ;; COMPlete ANYthing
