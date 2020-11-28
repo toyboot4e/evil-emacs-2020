@@ -158,6 +158,26 @@
     ;; press `K` to see the help!
     (evil-define-key 'normal 'global "K" #'helpful-at-point)
     )
+;; ------------------------------ Terminal ------------------------------
+
+;; If on terminal
+(when (not (display-graphic-p))
+    ;; Two exclusive options:
+    ;; 1. use left click to move cursor:
+    (xterm-mouse-mode 1)
+    ;; 2. use left click to select (and copy):
+    ;; (xterm-mouse-mode -1)
+
+    ;; use mouse wheel for scrolling
+    (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+    (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+
+;; [Terminal] Add command to copy to clipboard
+(use-package clipetty
+    :after evil
+    :config
+    ;; copy to system clipboard with `:copy`
+    (evil-ex-define-cmd "copy" #'clipetty-kill-ring-save))
 
 ;; ------------------------------ Programming ------------------------------
 
