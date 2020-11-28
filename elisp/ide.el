@@ -48,3 +48,32 @@
     :if (display-graphic-p)
     :hook (company-mode . company-box-mode))
 
+(use-package ivy
+    ;; https://github.com/abo-abo/swiper
+    :init
+    (setq ivy-use-virtual-buffers nil ; show recentf and bookmarks?
+          ivy-count-format "(%d/%d) "
+          ivy-height 20
+          ivy-truncate-lines t        ; trancate or wrap
+          ivy-wrap t                  ; cycle, please!
+          )
+    :bind (:map ivy-minibuffer-map
+                ;; Vim-like
+                ("C-f" . ivy-scroll-up-command)
+                ("C-b" . ivy-scroll-down-command)
+                )
+    :config (ivy-mode))
+
+(use-package ivy-rich
+    ;; https://github.com/Yevgnen/ivy-rich
+    :after ivy
+    :init (setcdr (assq t ivy-format-functions-alist) #'ivy-format-function-line)
+    :config (ivy-rich-mode 1))
+
+(use-package projectile
+    ;; https://github.com/bbatsov/projectile
+    :init
+    (setq projectile-completion-system 'ivy
+          projectile-enable-caching t)
+    :config (projectile-mode +1))
+
