@@ -14,4 +14,25 @@
                 evil-escape-unordered-key-sequence t)
     :config (evil-escape-mode))
 
+(progn ;; [Evil] Set up word policy
+    ;; Do not treat `_` as a word boundary (thought it still treats `-` as a word boundary):
+    (modify-syntax-entry ?_ "w")
+    ;; Or, make motions based on _symbols_, instead of _words_:
+    ;; (defalias 'forward-evil-word 'forward-evil-symbol)
+
+    ;; c.f. https://evil.readthedocs.io/en/latest/faq.html
+    )
+
+(progn ;; [Evil] Prevent cursor from going to the next line of EoF
+    (defun toy/fix-point ()
+        (unless (window-minibuffer-p)
+            (when (= (point) (point-max)) (forward-line -1))))
+    (add-hook 'post-command-hook (lambda () (interactive) (toy/fix-point))))
+
+;; [Evil] Let `{` and `}` skip multiple bullets (`* ..` in markdown) like Vim:
+(with-eval-after-load 'evil
+    (defadvice forward-evil-paragraph (around default-values activate)
+        (let ((paragraph-start (default-value 'paragraph-start))
+              (paragraph-separate (default-value 'paragraph-separate)))
+            ad-do-it)))
 
