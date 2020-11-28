@@ -137,10 +137,18 @@
     (defun toy/insert-line-down (count)
         (dotimes (_ count) (save-excursion (evil-insert-newline-below)))))
 
+;; for smart buffer navigation
+(defun toy/skip-star (nav-fn)
+    (if (string-prefix-p "*" (buffer-name))
+            (funcall nav-fn)
+        (progn (funcall nav-fn)
+               (while (string-prefix-p "*" (buffer-name)) (funcall nav-fn))
+               )))
+
 (evil-define-key 'normal 'global
     ;; cycle through buffers
-    "[b" #'evil-prev-buffer
-    "]b" #'evil-next-buffer
+    "[b" (lambda () (interactive) (toy/skip-star #'evil-prev-buffer))
+    "]b" (lambda () (interactive) (toy/skip-star #'evil-next-buffer))
 
     ;; goto previous/next hunk and center cursor
     "[c" (lambda () (interactive)
