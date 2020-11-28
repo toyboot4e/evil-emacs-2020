@@ -8,3 +8,10 @@
 (define-key help-mode-map "q" #'kill-this-buffer)
 (define-key help-mode-map "Q" #'evil-delete-buffer)
 
+;; [Evil] Smart escape with `jk` or `kj`
+(use-package evil-escape
+    :init (setq evil-escape-key-sequence "jk"
+                evil-escape-unordered-key-sequence t)
+    :config (evil-escape-mode))
+
+
