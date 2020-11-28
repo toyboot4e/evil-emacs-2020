@@ -172,3 +172,50 @@
                 "*" 'swiper-thing-at-point
                 ))
 
+;; ------------------------------ DSLs ------------------------------
+
+(use-package gitignore-mode
+    :mode ("\\.gitignore" . gitignore-mode))
+
+(use-package markdown-mode
+    ;; https://jblevins.org/projects/markdown-mode/
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "multimarkdown")
+    :config
+    (evil-define-key 'normal markdown-mode-map
+        "z1" (lambda () (interactive) (outline-hide-sublevels 1))
+        "z2" (lambda () (interactive) (outline-hide-sublevels 2))
+        "z3" (lambda () (interactive) (outline-hide-sublevels 3))
+        "z4" (lambda () (interactive) (outline-hide-sublevels 4))
+        "z5" (lambda () (interactive) (outline-hide-sublevels 5))
+        "z6" (lambda () (interactive) (outline-hide-sublevels 6))
+        "z9" (lambda () (interactive) (outline-hide-sublevels 9))
+        "z0" #'evil-open-folds))
+
+(use-package adoc-mode
+    ;; https://github.com/sensorflo/adoc-mode
+    ;; c.f. `evil-lion` to align table
+    :mode (("\\.adoc\\'" . adoc-mode))
+    :hook (adoc-mode . outline-minor-mode)
+    :config
+    (evil-define-key 'normal outline-minor-mode-map
+        "z1" (lambda () (interactive) (outline-hide-sublevels 3))
+        "z2" (lambda () (interactive) (outline-hide-sublevels 4))
+        "z3" (lambda () (interactive) (outline-hide-sublevels 5))
+        "z4" (lambda () (interactive) (outline-hide-sublevels 6))
+        "z5" (lambda () (interactive) (outline-hide-sublevels 7))
+        "z6" (lambda () (interactive) (outline-hide-sublevels 8))
+        "z9" (lambda () (interactive) (outline-hide-sublevels 11))
+        "z0" #'evil-open-folds
+        ))
+
+(use-package yaml-mode :defer t)
+(use-package ron-mode
+    :mode (("\\.ron\\'" . ron-mode))
+    ;; for `evil-nerd-commenter`:
+    :hook (ron-mode . (lambda () (setq comment-start "// " comment-end "")))
+    )
+
