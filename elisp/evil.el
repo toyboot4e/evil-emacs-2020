@@ -58,6 +58,9 @@
 ;; ------------------------------ Evil ------------------------------
 
 (use-package evil
+    :init
+    ;; do not bind `C-z` to `evil-emacs-state`
+    (setq evil-toggle-key "")
     :config
     (evil-mode 1))
 
