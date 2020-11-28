@@ -27,3 +27,24 @@
     (centaur-tabs-headline-match)
     (centaur-tabs-mode t))
 
+;; ------------------------------ Intelligence ------------------------------
+
+(use-package company ;; COMPlete ANYthing
+    ;; http://company-mode.github.io/
+    :hook (prog-mode . company-mode)
+    :bind (:map company-active-map
+                ;; ("<tab>" . company-complete-selection)
+                ("C-n" . company-select-next-or-abort)
+                ("C-p" . company-select-previous-or-abort))
+    :init
+    (setq company-idle-delay 0             ;; default: `0.2`
+          company-minimum-prefix-length 1
+          company-selection-wrap-around t
+          ))
+
+(use-package company-box
+    ;; show icons in the completion menu
+    ;; https://github.com/sebastiencs/company-box
+    :if (display-graphic-p)
+    :hook (company-mode . company-box-mode))
+
