@@ -55,3 +55,9 @@
     (require 'bind-key)
     (use-package diminish :defer t))
 
+;; ------------------------------ Evil ------------------------------
+
+(use-package evil
+    :config
+    (evil-mode 1))
+
