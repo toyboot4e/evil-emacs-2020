@@ -258,7 +258,11 @@
     ;; press `K` to see the help!
     (evil-define-key 'normal 'global "K" #'helpful-at-point)
     )
-;; ------------------------------ Terminal ------------------------------
+
+;; ------------------------------ GUI/Terminal ------------------------------
+
+;; [GUI] Icons
+(use-package all-the-icons :if (display-graphic-p))
 
 ;; If on terminal
 (when (not (display-graphic-p))
