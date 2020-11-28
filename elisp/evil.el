@@ -109,6 +109,22 @@
         "v" #'er/expand-region
         "V" #'er/contract-region))
 
+;; ------------------------------ Help ------------------------------
+
+(use-package which-key
+    :init
+    ;; a) show hints immediately
+    (setq which-key-idle-delay 0.01
+          which-key-idle-secondary-delay 0.01)
+    ;; b) always press `C-h` to trigger which-key
+    ;; (setq which-key-show-early-on-C-h t
+    ;;       which-key-idle-delay 10000
+    ;;       which-key-idle-secondary-delay 0.05)
+
+    :config
+    (define-key help-map (kbd "M") 'which-key-show-major-mode)
+    (which-key-mode))
+
 ;; ------------------------------ Programming ------------------------------
 
 (progn ;; ELisp
