@@ -101,3 +101,15 @@
     ;; "\C-p" 'evil-previous-line
     )
 
+;; ------------------------------ Misc ------------------------------
+
+(use-package evil-nerd-commenter
+    :ensure t
+    :commands (evilnc-comment-or-uncomment-lines))
+
+(evil-define-key '(normal visual) 'global
+    " /" 'evilnc-comment-or-uncomment-lines)
+
+(evil-define-key 'insert 'global
+    "\C-s" (lambda () (interactive) (evil-force-normal-state) (save-buffer)))
+
