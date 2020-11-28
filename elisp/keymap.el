@@ -30,6 +30,24 @@
               (paragraph-separate (default-value 'paragraph-separate)))
             ad-do-it)))
 
+(progn ;; [Evil] Translate `ESC` or `C-c` to `C-g`
+    ;; it works in `counsel-M-x`, Ivy minibuffer and more
+
+    (defun toy/smart-esc-tr (prompt)
+        (if (or (evil-insert-state-p) (evil-normal-state-p)
+                (evil-replace-state-p) (evil-visual-state-p))
+                (kbd "ESC")
+            (kbd "C-g")))
+    (define-key key-translation-map (kbd "ESC") #'toy/smart-esc-tr)
+
+    (defun toy/smart-cc-tr (prompt)
+        (if (or (evil-insert-state-p) (evil-normal-state-p)
+                (evil-replace-state-p) (evil-visual-state-p))
+                (kbd "C-c")
+            (kbd "C-g")))
+    (define-key key-translation-map (kbd "C-c") #'toy/smart-cc-tr)
+    )
+
 ;; ------------------------------ Evil packages ------------------------------
 
 ;; [Evil] Smart escape with `jk` or `kj`
