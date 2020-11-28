@@ -179,5 +179,9 @@
     ;; insert newline keeping the cursor position
     "[ " (lambda () (interactive)  (save-excursion (evil-insert-newline-above)))
     "] " (lambda () (interactive)  (save-excursion (evil-insert-newline-below)))
+
+    ;; cycle through windows
+    "[w" #'evil-window-prev
+    "]w" #'evil-window-next
     )
 
