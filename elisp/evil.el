@@ -266,6 +266,28 @@
     ;; copy to system clipboard with `:copy`
     (evil-ex-define-cmd "copy" #'clipetty-kill-ring-save))
 
+;; ------------------------------ Dashboard ------------------------------
+
+(use-package dashboard
+    :init
+    :config
+    (setq dashboard-items '(
+                            (projects . 10)
+                            (recents  . 5)
+                            (bookmarks . 5)
+                            (agenda . 5)
+                            (registers . 5)
+                            ))
+    (setq dashboard-set-heading-icons (display-graphic-p)
+          dashboard-set-file-icons (display-graphic-p))
+    (dashboard-setup-startup-hook))
+
+;; use `dashborad` in `emacs -client`
+(let (d (get-buffer "*dashboard*"))
+    (when d
+        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+        ))
+
 ;; ------------------------------ Programming ------------------------------
 
 (progn ;; ELisp
