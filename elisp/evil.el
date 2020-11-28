@@ -223,7 +223,7 @@
     (evil-ex-define-cmd "Bd" #'kill-this-buffer)
     (evil-ex-define-cmd "BD" #'kill-this-buffer)
     ;; horizontal split
-    (evil-ex-define-cmd "hs" #'evil-split-buffer))
+    (evil-ex-define-cmd "hs" #'evil-window-split))
 
 ;; Enable redo with evil
 (use-package undo-tree
@@ -314,7 +314,7 @@
         (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
         ))
 
-;; ------------------------------ Programming ------------------------------
+;; ------------------------------ ELisp ------------------------------
 
 (progn ;; ELisp
     (setq-default lisp-body-indent 4    ; I need this
