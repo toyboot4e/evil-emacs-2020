@@ -84,3 +84,21 @@
           projectile-enable-caching t)
     :config (projectile-mode +1))
 
+(use-package counsel
+    :after ivy
+    :bind
+    ;; override default functions (`C-h f` etc.)
+    ([remap describe-function] . counsel-describe-function)
+    ([remap describe-variable] . counsel-describe-variable)
+    ([remap describe-bindings] . counsel-descbinds)
+    ;; see also: `C-h M` (which is mapped to `which-key-show-major-mode`)
+    )
+
+(use-package counsel-projectile
+    :after (evil counsel projectile)
+    :config
+    ;; overwrite key mappings for `i_CTRL-r` (with Ivy height 20)
+    (evil-define-key 'insert 'global "\C-r" #'counsel-evil-registers)
+    ;; NOTE: we can't use `counsel-evil-registers` in ex mode because both of them use minibuffer
+    (add-to-list 'ivy-height-alist '(counsel-evil-registers . 20)))
+
