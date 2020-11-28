@@ -95,6 +95,31 @@
 (use-package darkokai-theme
     :config (load-theme 'darkokai t))
 
+;; Show git status on line numbers
+(use-package git-gutter
+    :if (not (display-graphic-p))
+    :config (global-git-gutter-mode)
+    :custom
+    (git-gutter:modified-sign "~")
+    (git-gutter:added-sign    "+")
+    (git-gutter:deleted-sign  "-")
+    :custom-face
+    (git-gutter:modified ((t (:background "#c0b18b" :foreground "#2f2f2f"))))
+    (git-gutter:added    ((t (:background "#84edb9" :foreground "#2f2f2f"))))
+    (git-gutter:deleted  ((t (:background "#d75f5f" :foreground "#2f2f2f")))))
+
+(use-package git-gutter-fringe
+    :if (display-graphic-p)
+    :config (global-git-gutter-mode)
+    :custom
+    (git-gutter-fr:modified-sign "~")
+    (git-gutter-fr:added-sign    "+")
+    (git-gutter-fr:deleted-sign  "-")
+    :custom-face
+    (git-gutter-fr:modified ((t (:background "#c0b18b" :foreground "#2f2f2f"))))
+    (git-gutter-fr:added    ((t (:background "#84edb9" :foreground "#2f2f2f"))))
+    (git-gutter-fr:deleted  ((t (:background "#d75f5f" :foreground "#2f2f2f")))))
+
 ;; ------------------------------ Evil ------------------------------
 
 (use-package evil
