@@ -135,6 +135,19 @@
 (use-package darkokai-theme
     :config (load-theme 'darkokai t))
 
+;; modeline
+(use-package doom-modeline
+    ;; https://seagle0128.github.io/doom-modeline/
+    :config
+    ;; icons, please
+    (setq doom-modeline-icon (display-graphic-p)
+          doom-modeline-major-mode-icon (display-graphic-p))
+    (setq doom-modeline-height 18           ;; can't be smaller than this..
+          doom-modeline-buffer-encoding nil ;; 'cause it's always UTF-8
+          doom-modeline-minor-modes nil     ;; if `t`, should `:diminish` minor modes
+          doom-modeline-buffer-file-name-style 'truncate-upto-project)
+    (doom-modeline-mode))
+
 ;; Show git status on line numbers
 (use-package git-gutter
     :if (not (display-graphic-p))
