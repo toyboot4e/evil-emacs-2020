@@ -28,11 +28,33 @@
     (set-selection-coding-system 'utf-8)
     (modify-coding-system-alist 'process "*" 'utf-8))
 
-;; show line numbers
-(global-display-line-numbers-mode)
+(progn ;; Hide some builtin UI
+    (menu-bar-mode -1)
+    ;; GUI
+    (scroll-bar-mode -1)
+    (tool-bar-mode -1)
+    (blink-cursor-mode -1))
 
-;; highlight current line
-(global-hl-line-mode t)
+(progn ;; Show more
+    ;; show line numbers
+    (global-display-line-numbers-mode)
+
+    ;; highlight current line
+    (global-hl-line-mode t)
+
+    ;; show trailing whitespaces
+    (setq-default show-trailing-whitespace t)
+
+    (progn ;; show matching parentheses
+        (setq-default show-paren-delay 0)
+        (show-paren-mode 1))
+
+    ;; show `line:column` in the modeline
+    (column-number-mode))
+
+;; [GUI]
+(set-cursor-color "#8fee96")
+(set-fringe-mode 10)
 
 ;; ------------------------------ Boostrapping ------------------------------
 
