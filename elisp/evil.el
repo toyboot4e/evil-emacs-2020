@@ -120,6 +120,22 @@
     (git-gutter-fr:added    ((t (:background "#84edb9" :foreground "#2f2f2f"))))
     (git-gutter-fr:deleted  ((t (:background "#d75f5f" :foreground "#2f2f2f")))))
 
+(use-package rainbow-delimiters
+    :config (rainbow-delimiters-mode))
+
+(use-package hl-todo ;; highlight TODO, FIXME, etc.
+    ;; https://github.com/tarsius/hl-todo
+    :config
+    (setq hl-todo-highlight-punctuation ":"
+          hl-todo-keyword-faces
+          `(("TODO"       warning bold)
+            ("FIXME"      error bold)
+            ("HACK"       font-lock-constant-face bold)
+            ("REVIEW"     font-lock-keyword-face bold)
+            ("NOTE"       success bold)
+            ("DEPRECATED" font-lock-doc-face bold)))
+    (global-hl-todo-mode 1))
+
 ;; ------------------------------ Evil ------------------------------
 
 (use-package evil
