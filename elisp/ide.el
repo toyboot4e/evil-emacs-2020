@@ -33,6 +33,7 @@
     (centaur-tabs-mode t))
 
 (use-package neotree
+    :after evil
     :commands (neotree-quick-look)
     :init
     (setq neo-theme (if (display-graphic-p) 'icons 'arrows)
@@ -50,6 +51,34 @@
                       (text-scale-adjust 0)
                       (text-scale-decrease 0.5) ;; the bigger, the smaller
                       )))
+
+    (evil-define-key 'normal neotree-mode-map
+        (kbd "RET") #'neotree-enter
+
+        ;; open
+        "oo" #'neotree-enter
+        "ov" #'neotree-enter-vertical-split
+        "oh" #'neotree-enter-horizontal-split
+
+        ;; change directory
+        "cd" #'neotree-change-root    ;; cd: chande directory
+        "cu" #'neotree-select-up-node ;; cu: up directory
+        "cc" #'neotree-copy-node      ;; cc: copy
+
+        ;; menu (file/directory operation)
+        "mc" #'neotree-create-node    ;; mc: create node
+        "md" #'neotree-delete-node    ;; md: delete node
+        "mr" #'neotree-rename-node    ;; mr: rename mode
+
+        ;; view
+        "h" #'neotree-hidden-file-toggle
+        "r" #'neotree-refresh
+
+        ;; else
+        "q" #'neotree-hide          ;; quit
+        "z" #'neotree-stretch-toggle
+        (kbd "TAB") 'neotree-stretch-toggle
+        )
     )
 
 ;; ------------------------------ Intelligence ------------------------------
