@@ -73,6 +73,13 @@
     :init
     ;; do not bind `C-z` to `evil-emacs-state`
     (setq evil-toggle-key "")
+    ;; configure
+    (setq evil-want-C-u-delete t     ; use C-u for deleting in insert mode
+          evil-want-C-u-scroll t     ; use C-u for scrolling in normal mode
+          evil-want-Y-yank-to-eol t  ; map `Y` to `y$`
+          evil-move-cursor-back t    ; move cursor back when exiting insert mode (like Vim)
+          evil-search-module 'evil-search  ; `evil-search` seem to highlight better
+          )
     :config
     (evil-mode 1))
 
