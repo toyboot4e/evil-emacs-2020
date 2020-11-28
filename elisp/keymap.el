@@ -289,3 +289,33 @@
                   ))
     )
 
+;; ------------------------------ Dashboard ------------------------------
+
+(defun toy/kill-all ()
+    "Kill most buffers"
+    (interactive)
+    (dolist (buf (buffer-list))
+        (let (name (buffer-name buf))
+            (unless (or (string= name "*scratch*")
+                        (string= name "*Messages*")
+                        )
+                (kill-buffer buf)
+                ))
+        ))
+
+(defun toy/reset ()
+    "Kill buffers and go back to the dashboard."
+    (interactive)
+    (toy/kill-all)
+    (delete-other-windows)
+
+    (dashboard-insert-startupify-lists)
+    (switch-to-buffer dashboard-buffer-name)
+
+    (dashboard-jump-to-projects)
+    (toy/force-center))
+
+(evil-define-key 'normal 'global
+    "   x" #'toy/reset
+    )
+

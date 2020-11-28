@@ -296,10 +296,9 @@
 ;; ------------------------------ Dashboard ------------------------------
 
 (use-package dashboard
-    :init
     :config
     (setq dashboard-items '(
-                            (projects . 10)
+                            (projects . 30)
                             (recents  . 5)
                             (bookmarks . 5)
                             (agenda . 5)
@@ -310,10 +309,9 @@
     (dashboard-setup-startup-hook))
 
 ;; use `dashborad` in `emacs -client`
-(let (d (get-buffer "*dashboard*"))
+(let (d (get-buffer dashboard-buffer-name))
     (when d
-        (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
-        ))
+        (setq initial-buffer-choice d)))
 
 ;; ------------------------------ ELisp ------------------------------
 
