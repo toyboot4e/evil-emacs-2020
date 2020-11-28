@@ -239,10 +239,15 @@
     " :" #'counsel-M-x
     " ;" #'shell-command
 
+    ;; neotree
     " nn" #'toy/neo-proj
     " nt" #'neotree-toggle
     " nf" #'neotree-find
     " nq" #'neotree-quick-look
+
+    ;; zen/zoom
+    " zz" #'olivetti-mode
+    " zx" #'zoom-window-zoom
     )
 
 ;; [f]ind

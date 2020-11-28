@@ -5,6 +5,16 @@
 
 ;; ------------------------------ Widgets ------------------------------
 
+;; Zoom in to a pane: https://github.com/emacsorphanage/zoom-window
+(use-package zoom-window)
+
+;; Zen mode *per buffer* (not per frame and that is great!)
+(use-package olivetti
+    ;; https://github.com/rnkn/olivetti
+    :commands (olivetti-mode)
+    :custom
+    (olivetti-body-width 100))
+
 (use-package centaur-tabs
     ;; https://github.com/ema2159/centaur-tabs
     ;; NOTE: it adds default bindings go to `C-c C-c`
