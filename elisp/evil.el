@@ -87,6 +87,12 @@
     ;; horizontal split
     (evil-ex-define-cmd "hs" #'evil-split-buffer))
 
+;; Enable redo with evil
+(use-package undo-tree
+    :init
+    (evil-set-undo-system 'undo-tree)
+    (global-undo-tree-mode))
+
 ;; ------------------------------ Programming ------------------------------
 
 (progn ;; ELisp
