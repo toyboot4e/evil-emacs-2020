@@ -76,6 +76,17 @@
     :config
     (evil-mode 1))
 
+(progn ;; Interactive commands
+    ;; use `:ed` to open `init.el`
+    (evil-ex-define-cmd "ed" (lambda () (interactive) (evil-edit (concat user-emacs-directory "init.el"))))
+    ;; use `:s` to edit `init.el`
+    (evil-ex-define-cmd "s" (lambda () (interactive) (load-file (concat user-emacs-directory "init.el"))))
+    ;; close buffer (without closing window). alternative: `C-x k RET`
+    (evil-ex-define-cmd "Bd" #'kill-this-buffer)
+    (evil-ex-define-cmd "BD" #'kill-this-buffer)
+    ;; horizontal split
+    (evil-ex-define-cmd "hs" #'evil-split-buffer))
+
 ;; ------------------------------ Programming ------------------------------
 
 (progn ;; ELisp
