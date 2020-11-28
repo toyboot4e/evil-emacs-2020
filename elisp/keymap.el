@@ -8,12 +8,6 @@
 (define-key help-mode-map "q" #'kill-this-buffer)
 (define-key help-mode-map "Q" #'evil-delete-buffer)
 
-;; [Evil] Smart escape with `jk` or `kj`
-(use-package evil-escape
-    :init (setq evil-escape-key-sequence "jk"
-                evil-escape-unordered-key-sequence t)
-    :config (evil-escape-mode))
-
 (progn ;; [Evil] Set up word policy
     ;; Do not treat `_` as a word boundary (thought it still treats `-` as a word boundary):
     (modify-syntax-entry ?_ "w")
@@ -35,6 +29,28 @@
         (let ((paragraph-start (default-value 'paragraph-start))
               (paragraph-separate (default-value 'paragraph-separate)))
             ad-do-it)))
+
+;; ------------------------------ Evil packages ------------------------------
+
+;; [Evil] Smart escape with `jk` or `kj`
+(use-package evil-escape
+    :init (setq evil-escape-key-sequence "jk"
+                evil-escape-unordered-key-sequence t)
+    :config (evil-escape-mode))
+
+;; Add `g~` operator to cycle through string cases: https://github.com/ninrod/evil-string-inflection
+(use-package evil-string-inflection)
+
+;; Add `gl` and `gL` algin operators: https://github.com/edkolev/evil-lion
+(use-package evil-lion
+    :config
+    (evil-define-key 'normal 'global
+        "gl" #'evil-lion-left
+        "gL" #'evil-lion-right)
+    (evil-define-key 'visual 'global
+        "gl" #'evil-lion-left
+        "gL" #'evil-lion-right)
+    (evil-lion-mode))
 
 ;; ------------------------------ Evil policies ------------------------------
 
