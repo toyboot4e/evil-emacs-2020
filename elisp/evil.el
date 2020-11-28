@@ -76,3 +76,19 @@
     :config
     (evil-mode 1))
 
+;; ------------------------------ Programming ------------------------------
+
+(progn ;; ELisp
+    (setq-default lisp-body-indent 4    ; I need this
+                  indent-tabs-mode nil  ; don't whitespaces with TAB (overwrite it for, e.g., Makefile)
+                  tab-width 4           ; display tab with a width of 4
+                  )
+
+
+    (use-package aggressive-indent
+        :hook ((emacs-lisp-mode scheme-mode) . aggressive-indent-mode))
+
+    ;; enable folding (`zr` to open all, `zm` to fold all, `za` to toggle)
+    (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+    )
+
