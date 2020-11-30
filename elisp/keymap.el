@@ -92,6 +92,9 @@
     ;; more generic helper: https://github.com/syl20bnr/spacemacs/issues/6977#issuecomment-24^4014379
     )
 
+(defun toy/force-center()
+    (evil-scroll-line-to-center (line-number-at-pos)))
+
 (progn ;; [Evil] Center cursor on search (`n` -> `nzz`, `N` -> `Nzz`)
     (advice-add 'evil-ex-search-next :after (lambda (&rest x) (toy/force-center)))
     (advice-add 'evil-ex-search-previous :after (lambda (&rest x) (toy/force-center)))
@@ -257,7 +260,7 @@
 
 ;; [f]ind
 (evil-define-key 'normal 'global
-    ;; TIP: press `C-l` to preview, `C-k k` to kill
+    ;; TIP: press `C-l` to preview, `C-k` to kill
     ;; TIP: press `TAB` to enter the directory
     " ff" #'counsel-find-file
     " fF" #'counsel-projectile-find-file
