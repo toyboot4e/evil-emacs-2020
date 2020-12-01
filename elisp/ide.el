@@ -5,6 +5,8 @@
       transient-history-file (concat user-emacs-directory "tmp/transient/history.el")
       transient-values-file (concat user-emacs-directory "tmp/transient/values.el")
       transient-levels-file (concat user-emacs-directory "tmp/transient/levels.el")
+      ;; lsp
+      lsp-session-file (concat user-emacs-directory "tmp/.lsp-session-v")
       )
 
 ;; Set up `PATH` and `exec-path`
@@ -212,6 +214,8 @@
     ;; https://github.com/abo-abo/hydra
     :defer t)
 
+(use-package ivy-hydra :defer t)
+
 ;; ------------------------------ DSLs ------------------------------
 
 (use-package gitignore-mode
@@ -257,5 +261,96 @@
     :mode (("\\.ron\\'" . ron-mode))
     ;; for `evil-nerd-commenter`:
     :hook (ron-mode . (lambda () (setq comment-start "// " comment-end "")))
+    )
+
+;; ------------------------------ LSP ------------------------------
+
+;; this is recommended by `lsp-mode`
+(use-package flycheck :defer t)
+
+(use-package lsp-mode
+    ;; https://emacs-lsp.github.io/lsp-mode
+    :commands (lsp lsp-deferred)
+    :hook (lsp-mode . lsp-enable-which-key-integration)
+
+    :init
+    ;; NOTE: manual binding to `lsp-commad-map` is below (`define-key`)
+    (setq lsp-keymap-prefix nil)
+
+    (setq lsp-log-io t             ; output log to `*lsp-log*`
+          lsp-trace t
+          lsp-print-performance t  ; also performance information
+          )
+
+    :config
+    ;; hide: https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+    (setq lsp-eldoc-enable-hover nil
+          lsp-signature-auto-activate nil
+          lsp-signature-render-documentation nil
+          lsp-completion-show-kind nil
+          lsp-enable-symbol-highlighting nil
+          )
+    (setq lsp-modeline-diagnostics-scope :workspace)
+
+    (define-key evil-normal-state-map " l" lsp-command-map)
+    (evil-define-key 'normal lsp-mode-map
+        "K" #'lsp-describe-thing-at-point
+        )
+    )
+
+;; NOTE: `lsp-ui` can be too slow (especially on Windows). Consider disabling it then.
+(use-package lsp-ui
+    ;; https://emacs-lsp.github.io/lsp-ui/
+    ;; automatically activated by `lsp-mode` automatically
+    :commands lsp-ui-mode
+    :bind (:map lsp-command-map
+                ("i" . lsp-ui-imenu)
+                ;; `gf`: `lsp-treemacs-error-list` (default)
+                ("gf" . lsp-ui-flycheck-list)
+                )
+    :config
+    (setq lsp-idle-delay 0.500
+          lsp-ui-sideline-delay 0
+          lsp-ui-doc-delay 0)
+
+    ;; hide
+    (setq lsp-ui-doc-enable nil
+          lsp-ui-doc-position 'top
+          )
+
+    ;; show errors on sideline
+    (setq lsp-ui-sideline-show-diagnostics t
+          lsp-ui-sideline-show-hover nil
+          lsp-ui-sideline-show-code-actions nil
+          )
+
+    ;; `lsp-ui-imenu` is awesome!
+    (setq lsp-ui-imenu-window-width 30)
+
+    (evil-define-key 'normal lsp-ui-imenu-mode-map
+        ;; preview
+        (kbd "TAB") #'lsp-ui-imenu--view
+        ;; go
+        (kbd "RET") #'lsp-ui-imenu--visit
+        )
+    )
+
+(use-package lsp-ivy
+    :commands (lsp-ivy-workspace-symbol
+               lsp-ivy-global-workspace-symbol))
+
+(use-package rustic
+    ;; NOTE: `rustic` provides a prefix `C-c C-c`
+    ;; `rustic` uses `rust-analyzer` by default`
+    :hook (rustic-mode . lsp-deferred)
+    :config
+    ;; `rustic`, please don't format
+    (setq rustic-format-trigger nil
+          rustic-format-on-save nil
+          rustic-lsp-format t)
+    ;; `lsp-mode`, please save on format
+    (add-hook 'before-save-hook
+              (lambda () (when (eq 'rustic-mode major-mode)
+                             (lsp-format-buffer))))
     )
 
