@@ -339,6 +339,17 @@
     :commands (lsp-ivy-workspace-symbol
                lsp-ivy-global-workspace-symbol))
 
+(use-package lsp-treemacs
+    ;; https://github.com/emacs-lsp/lsp-treemacs
+    ;; Default key mappings:
+    ;; * `lsp-error-list`: `<lsp-keymap-prefix> g e`
+    :after lsp-mode
+    :config
+    ;; TODO: set up key mappings
+    (evil-set-initial-state 'lsp-treemacs-error-list-mode
+                            'emacs)
+    (lsp-treemacs-sync-mode 1))
+
 (use-package rustic
     ;; NOTE: `rustic` provides a prefix `C-c C-c`
     ;; `rustic` uses `rust-analyzer` by default`
