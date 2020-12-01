@@ -274,19 +274,19 @@ I should have done it earlier.
 +
 Plz
 
-https://github.com/toyboot4e/evil-emacs-2020/commit/0de195a587e4b017022b31479e7b5b5bd73ef970[0de195a]: add neotree
+* https://github.com/toyboot4e/evil-emacs-2020/commit/0de195a587e4b017022b31479e7b5b5bd73ef970[0de195a]: add neotree
 +
 image::neotree.png[]
 +
-{neotree} is an alternative to NERDTree in Vim. {neotree} is easy to use, but {treemacs} supports multiple root directories, so I'd try {treemacs} later (it's not included in this repo).
+{neotree} is an alternative to NERDTree in Vim. {neotree} is easy to use, but {treemacs} supports multiple root directories, so I'd try {treemacs} later (though it won't be included in this repo).
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/8e856f11d57e5b2ff7b41292b155968a2775d744[8e856f1]: add keys to neotree-mode-map
 +
-Settings on my taste.
+Settings on my taste, maybe similar to NERDTree defaults.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/376bdbe2dc06a450aa6cd15049af42d824b819b6[376bdbe]: add neotree keys
 +
-Same.
+Setings on my taste.
 
 Now our Emacs is intelligent enough! Language server supports will be added later.
 
@@ -304,7 +304,7 @@ Even faster startup!
 +
 https://github.com/rnkn/olivetti[olivetti] is a per-buffer distraction-free writing mode. Awesome! The drawback is that our `gj` and `gk` don't make sense in that mode. https://github.com/emacsorphanage/zoom-window[zoom-window] is for maximizing one window.
 +
-Alternatives to olivetti would be https://github.com/joaotavora/darkroom[darmroom] and https://github.com/joostkremers/writeroom-mode[writeroom-mode].
+Alternatives to olivetti would be https://github.com/joaotavora/darkroom[darkroom] and https://github.com/joostkremers/writeroom-mode[writeroom-mode].
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/fd63099b5c0803f6f6e85d6903a0bd37626dec1c[fd63099]: highlight DSLs
 +
@@ -373,6 +373,8 @@ I'm not quiet sure about `lsp-mode` configuration. Please refer to their awesome
 ** https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/[A guide on disabling/enabling lsp-mode features]
 * https://emacs-lsp.github.io/lsp-ui/[lsp-ui]
 
+It would not be that difficult after coming to this place. We've done lots of configurations.
+
 === 10. TODOs
 
 * More comfortable key mappings, especially in LSP error lists (flycheck and treemacs).
@@ -391,7 +393,7 @@ I used to not like every details of Evil Emacs, but now, I'm thinking the opposi
 
 `emacs-init-time` _says_ it took 1.07 seconds to start my `emacs` with my Rust files, but it's actually 3x longer (maybe to set up LSP). For plain text files, my `emacs -nw` is fast enough.
 
-I didn't use `after-init-hook` because I didn't think it made sense. `after-init-hook` is run after `emacs-init-time`, so `after-init-hook` pretends faster startup, which is obviously not a good thing. Just my curious, but is there any real pros? If so, I'd like to make changes.
+I didn't use `after-init-hook` because I didn't think it made sense. `after-init-hook` is run after `emacs-init-time`, so `after-init-hook` pretends faster startup, which is obviously not a good thing. Just my curious, but is there any pros? If so, I'd like to make changes.
 
 I didn't use https://github.com/emacs-evil/evil-collection[evil-collection] because I was not sure what it was doing.
 
@@ -411,4 +413,6 @@ I didn't consider using byte compilation. Because it didn't contribute to even `
 
 * https://evil.readthedocs.io/en/latest/index.html[Evil - Documentation]
 * {evil-guide}
+
+Thanks!
 
