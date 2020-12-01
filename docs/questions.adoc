@@ -34,7 +34,7 @@ Make sure to https://github.com/syl20bnr/spacemacs/wiki/Terminal[enable true col
 
 . My Emacs is too slow to start up.
 +
-Make sure your `emacs-init-time` is smaller than `1.5` secs (if you're using SSD). If you use https://github.com/jwiegley/use-package[use-package], defer as much packages as possible; use one of `:defer t`, `:commands`, `:hook` and `:after`.
+Make sure your `emacs-init-time` is smaller than `1.5` secs (if you're using SSD). If you use https://github.com/jwiegley/use-package[use-package], defer as much packages as possible; use one of `:defer t`, `:commands`, `:hook` or `:after`.
 
 == Configuration
 
@@ -53,7 +53,7 @@ https://github.com/toyboot4e/evil-emacs-2020/commit/f69f4b347cc962012ddcd4810ffd
 
 . How can I make leader mappings?
 +
-I just make mappingss as https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[this]. https://github.com/noctuid/general.el[general.el] would be a complete solution, but the README is so long, so I skipped it in this repo.
+I just make mappings as https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[this]. https://github.com/noctuid/general.el[general.el] would be a complete solution, but the README is so long, so I skipped it in this repo.
 
 . How can I reduce Emacs/Vim context switching?
 +
@@ -63,7 +63,7 @@ I'm not using it. My temporary solution is: https://github.com/toyboot4e/evil-em
 
 . My Evil is not so like Vim.
 +
-https://github.com/toyboot4e/evil-emacs-2020/commit/0a1a9137b5d7bd21f7aab68989781a9074bae2b1[use C-z for SIGTSTP], https://github.com/toyboot4e/evil-emacs-2020/commit/8a26cf83387bc567b9da591a7d319030348402fd[enable undo with Evil], https://github.com/toyboot4e/evil-emacs-2020/commit/d037aeb50a62d0075dccf5c6382022606e5ed16c[configure Evil], https://github.com/toyboot4e/evil-emacs-2020/commit/6329ad4b03f2381849297ca6d4f2ed571dd866cc[scroll like Vim], https://github.com/toyboot4e/evil-emacs-2020/commit/a0ab641ee36a6e7500b7c8e05c425dda3a9f18ec[EVIL]/
+https://github.com/toyboot4e/evil-emacs-2020/commit/0a1a9137b5d7bd21f7aab68989781a9074bae2b1[use C-z for SIGTSTP], https://github.com/toyboot4e/evil-emacs-2020/commit/8a26cf83387bc567b9da591a7d319030348402fd[enable undo with Evil], https://github.com/toyboot4e/evil-emacs-2020/commit/d037aeb50a62d0075dccf5c6382022606e5ed16c[configure Evil], https://github.com/toyboot4e/evil-emacs-2020/commit/6329ad4b03f2381849297ca6d4f2ed571dd866cc[scroll like Vim], https://github.com/toyboot4e/evil-emacs-2020/commit/a0ab641ee36a6e7500b7c8e05c425dda3a9f18ec[EVIL].
 +
 See also: https://github.com/toyboot4e/evil-emacs-2020/commit/a7fff79188cebb8be75f596c31c33a771ee76cfe[add evil-escape] and https://github.com/toyboot4e/evil-emacs-2020/commit/38b3e2fe4b27faa10e34d88cad4711723cc917d7[add Evil policies]
 
@@ -77,7 +77,11 @@ https://github.com/toyboot4e/evil-emacs-2020/commit/551a61ff34d39f172c03ea6a76ed
 +
 It's out of the scope of this repository. You can try the buitlin tab mode, elscreepn, persp mode, eyebrowse and more.
 
+. What is an alternative to https://github.com/preservim/nerdtree[NERDTree]?
++
+https://github.com/jaypei/emacs-neotree[neotree] (configuration https://github.com/toyboot4e/evil-emacs-2020/blob/d0a8754cd8e5c42ac886e75c6776fa23eecddf20/elisp/ide.el#L83[here]). https://github.com/Alexander-Miller/treemacs[treemacs] has more features such as multi-root directories, but harder to configure.
+
 . Is there an alternative to https://github.com/junegunn/fzf.vim[fzf.vim] and https://github.com/yuki-ycino/fzf-preview.vim[fzf-preview.vim]?
 +
-https://github.com/abo-abo/swiper[abo-abo/swiper] is the most popular packages today. Use `counsel` functions to invoke fuzzy finders (https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[my key mappings]). I also addded https://github.com/toyboot4e/evil-emacs-2020/commit/5772dcb380533ddabd34c740e939ea3887158142[my key mappings] to preview/kill buffer (only using control key).
+https://github.com/abo-abo/swiper[abo-abo/swiper] (Ivy, Counsel and Swiper) is the most popular packages today. Use `counsel` functions to invoke fuzzy finders (https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[my key mappings]). I also addded https://github.com/toyboot4e/evil-emacs-2020/commit/5772dcb380533ddabd34c740e939ea3887158142[my key mappings] to preview/kill buffer (only using control key).
 
