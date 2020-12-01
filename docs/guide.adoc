@@ -257,6 +257,8 @@ For GUI.
 * https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[7986330]: add counsel mappings
 +
 Now, the fuzzy finder is in our hands!
++
+image::counsel.png[]
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/bcb67cd9655412060ed11f717b2015035beadbe3[bcb67cd]: translate ESC and C-c to C-g in non-Evil mode
 +
