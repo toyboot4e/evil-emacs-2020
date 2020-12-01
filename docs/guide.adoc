@@ -236,11 +236,11 @@ Later I'll add https://github.com/redguardtoo/evil-matchit[evil-matchit] (they f
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/b389aaa33c824ea98124a236a619ea51e94e5dc9[b389aaa]: add company (COMP-lete ANY-thing)
 +
-Now even ELisp is easier to edit! There are too many things that deserves "the first thing to do". Also I made sure we can use `C-n` and `C-p` to cycle through completion items.
+Now even ELisp is easier to edit! There are too many things that deserve "the first thing to do". Also I made sure we can use `C-n` and `C-p` to cycle through completion items.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/81ca75f6203964dea4b553ca55b8aebb8404d5fd[81ca75f]: add https://github.com/abo-abo/swiper[Ivy] and https://github.com/bbatsov/projectile[Projectile]
 +
-Ivy is our fuzzy finder. Key mappings will be added later. I also added https://github.com/Yevgnen/ivy-rich[ivy-rich], which makes Ivy, well, rich. Don't miss it! Projectile is the de-fact project manager of Emacs. Even if we don't directly call their methods, some packages do.
+Ivy is our fuzzy finder. Key mappings will be added later. I also added https://github.com/Yevgnen/ivy-rich[ivy-rich], which makes Ivy, well, rich (e.g. show both item and description). Don't miss it! Projectile is the de-fact project manager of Emacs. Even if we don't directly call their methods, some packages do, so we need it.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/5772dcb380533ddabd34c740e939ea3887158142[5772dcb]: add keys to Ivy mapping
 +
@@ -356,7 +356,7 @@ LSP servers are found from `PATH` so this is an important setting.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/f218bbd4805d307ba2f8d3ab8b34ad186dc1e070[f218bbd]: add https://github.com/redguardtoo/evil-matchit[evil-matchit]
 +
-Not related LSP. They fixed my https://github.com/redguardtoo/evil-matchit/issues/129[bug report] in one day so I added it!
+Not related to LSP. They fixed my https://github.com/redguardtoo/evil-matchit/issues/129[bug report] in one day so I added it!
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/d0a8754cd8e5c42ac886e75c6776fa23eecddf20[d0a8754]: add lsp-mode and rustic
 +
@@ -391,7 +391,7 @@ image::emacs.png[]
 
 Thank you for reading.. if anyone is there :)
 
-I used to not like every details of Evil Emacs, but now, I'm thinking the opposite. Still, some features like clipboard don't work well on terminal, so I need more polish.
+I used to not like every details of Evil Emacs, but now, I'm thinking the opposite. Still, some features like clipboard don't work well on terminal, so I need more polishing.
 
 === Notes
 
