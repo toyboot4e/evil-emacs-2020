@@ -56,10 +56,14 @@
                 evil-escape-unordered-key-sequence t)
     :config (evil-escape-mode))
 
-;; Add `g~` operator to cycle through string cases: https://github.com/ninrod/evil-string-inflection
+;; [Evil] Smarter `%` motion
+(use-package evil-matchit
+    :config (global-evil-matchit-mode 1))
+
+;; [Evil] Add `g~` operator to cycle through string cases: https://github.com/ninrod/evil-string-inflection
 (use-package evil-string-inflection)
 
-;; Add `gl` and `gL` algin operators: https://github.com/edkolev/evil-lion
+;; [Evil] Add `gl` and `gL` algin operators: https://github.com/edkolev/evil-lion
 (use-package evil-lion
     :config
     (evil-define-key 'normal 'global
