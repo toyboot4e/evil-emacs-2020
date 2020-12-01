@@ -1,0 +1,83 @@
+= Questions
+
+This is a reverse dictionary (purpose -> solution dictionary) to become evil.
+
+== Here we go!
+
+=== Getting started
+
+. How can I split my `init.el` into multiple files?
++
+See https://github.com/toyboot4e/evil-emacs-2020/tree/dcc59741a9e667a15cb4da82a513a8ffcf325efc[dcc5974].
+
+. How can I install packages?
++
+Boostrap `package.el` (buitlin) and https://github.com/jwiegley/use-package[use-package] as https://github.com/toyboot4e/evil-emacs-2020/commit/3d646f0cf96e4bd495190f548f948100bbe95144[this].
+
+. How can I become Evil?
++
+For more to get started, please refer to the link:guide.adoc[step-by-step guide].
+
+=== Environment
+
+. How can I enable input support in terminal? (mouse control and clipboard)
++
+*Clipboard support in Evil is broken*. https://github.com/toyboot4e/evil-emacs-2020/commit/72f1ed4b4fa59a0cc6ba4e8ba9f68b2256c9d720[72f1ed4] is my temporary solution. I added `:copy` command to copy to clipboard, but still, it doesn't work on Kitty terminal if the text is long. Help me!
+
+. How can I show icons in terminal?
++
+Basically you can't.
+
+. My Emacs in terminal doesn't look as vivid as Vim.
++
+Make sure to https://github.com/syl20bnr/spacemacs/wiki/Terminal[enable true color support] in your terminal. Still, I guess Emacs doesn't show the true colors. I gave up.
+
+. My Emacs is too slow to start up.
++
+Make sure your `emacs-init-time` is smaller than `1.5` secs (if you're using SSD). If you use https://github.com/jwiegley/use-package[use-package], defer as much packages as possible; use one of `:defer t`, `:commands`, `:hook` and `:after`.
+
+== Configuration
+
+. How can I put auto-generated files to `~/.emacs.d/tmp`?
++
+It dependes on packages: https://github.com/toyboot4e/evil-emacs-2020/blob/c423c4cdbb52d713608d80cc9080ef1b83613659/elisp/evil.el#L67[builtin packages], https://github.com/toyboot4e/evil-emacs-2020/blob/c423c4cdbb52d713608d80cc9080ef1b83613659/elisp/evil.el#L67[MELPA packages]
+
+
+. How can I see help of a variable or a function?
++
+Press `C-h v`, `C-h f` and more.
+
+. How can I see help of symbol at cursor with `K`?
++
+https://github.com/toyboot4e/evil-emacs-2020/commit/f69f4b347cc962012ddcd4810ffd9955b48effbd[f69f4b3] (Emacs help) and https://github.com/toyboot4e/evil-emacs-2020/commit/d0a8754cd8e5c42ac886e75c6776fa23eecddf20[d0a8754] (LSP help).
+
+. How can I make leader mappings?
++
+I just make mappingss as https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[this]. https://github.com/noctuid/general.el[general.el] would be a complete solution, but the README is so long, so I skipped it in this repo.
+
+. How can I reduce Emacs/Vim context switching?
++
+You might want to try https://github.com/emacs-evil/evil-collection[evil-collection].
++
+I'm not using it. My temporary solution is: https://github.com/toyboot4e/evil-emacs-2020/commit/bcb67cd9655412060ed11f717b2015035beadbe3[translate ESC and C-c to C-g in non-Evil modes] and https://github.com/toyboot4e/evil-emacs-2020/commit/0aead1943a72dd0a2949d864fe72d06f9c0a838d[be Evil everywhere]. Though it's not yet perfect.. sorry!
+
+. My Evil is not so like Vim.
++
+https://github.com/toyboot4e/evil-emacs-2020/commit/0a1a9137b5d7bd21f7aab68989781a9074bae2b1[use C-z for SIGTSTP], https://github.com/toyboot4e/evil-emacs-2020/commit/8a26cf83387bc567b9da591a7d319030348402fd[enable undo with Evil], https://github.com/toyboot4e/evil-emacs-2020/commit/d037aeb50a62d0075dccf5c6382022606e5ed16c[configure Evil], https://github.com/toyboot4e/evil-emacs-2020/commit/6329ad4b03f2381849297ca6d4f2ed571dd866cc[scroll like Vim], https://github.com/toyboot4e/evil-emacs-2020/commit/a0ab641ee36a6e7500b7c8e05c425dda3a9f18ec[EVIL]/
++
+See also: https://github.com/toyboot4e/evil-emacs-2020/commit/a7fff79188cebb8be75f596c31c33a771ee76cfe[add evil-escape] and https://github.com/toyboot4e/evil-emacs-2020/commit/38b3e2fe4b27faa10e34d88cad4711723cc917d7[add Evil policies]
+
+== From Vimmer's perspective
+
+. How can I show buffers at the top of the screen?
++
+https://github.com/toyboot4e/evil-emacs-2020/commit/551a61ff34d39f172c03ea6a76ed0f87a3fddabb[add centaur-tabs] (https://github.com/ema2159/centaur-tabs[centaur-tabs]). It provides groups of buffers and I think that's better.
+
+. How can I make "tabs" (in Vim term)?
++
+It's out of the scope of this repository. You can try the buitlin tab mode, elscreepn, persp mode, eyebrowse and more.
+
+. Is there an alternative to https://github.com/junegunn/fzf.vim[fzf.vim] and https://github.com/yuki-ycino/fzf-preview.vim[fzf-preview.vim]?
++
+https://github.com/abo-abo/swiper[abo-abo/swiper] is the most popular packages today. Use `counsel` functions to invoke fuzzy finders (https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[my key mappings]). I also addded https://github.com/toyboot4e/evil-emacs-2020/commit/5772dcb380533ddabd34c740e939ea3887158142[my key mappings] to preview/kill buffer (only using control key).
+

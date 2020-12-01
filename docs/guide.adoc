@@ -1,0 +1,414 @@
+= 10 steps to become evil
+:imagesdir: ../readme/
+
+// links
+:kitty: https://sw.kovidgoyal.net/kitty/[Kitty]
+:tmux: https://github.com/tmux/tmux/wiki[tmux]
+
+:chemacs: https://github.com/plexus/chemacs[chemacs]
+:doom-emacs: https://github.com/hlissner/doom-emacs[Doom Emacs]
+:spacemacs: https://www.spacemacs.org/[Spacemacs]
+
+:use-package: https://github.com/jwiegley/use-package[use-package]
+:leaf-el: https://github.com/conao3/leaf.el[leaf.el]
+:straight-el: https://github.com/raxod502/straight.el[straight.el]
+
+:posframe: https://github.com/tumashu/posframe[posframe]
+:git-gutter: https://github.com/emacsorphanage/git-gutter[git-gutter]
+
+:evil: https://github.com/emacs-evil/evil[Evil]
+:helpful: https://github.com/Wilfred/helpful[helpful]
+
+:evil-guide: https://github.com/noctuid/evil-guide[evil-guide]
+:general-el: https://github.com/noctuid/general.el[general.el]
+:hydra: https://github.com/abo-abo/hydra[hydra]
+
+:centaur-tabs: https://github.com/ema2159/centaur-tabs[centaur-tabs]
+:treemacs: https://github.com/Alexander-Miller/treemacs[treemacs]
+:neotree: https://github.com/jaypei/emacs-neotree[neotree]
+
+== Before getting started..
+
+* I don't recommend iTerm because it's a bit slow. I'm using {kitty} terminal.
+
+* Make sure to https://github.com/syl20bnr/spacemacs/wiki/Terminal[enable true color support] in your terminal, or your Emacs would look bad.
++
+Still Emacs might not show accurate colors though!
+
+* If you use {tmux}, set something like `set-option -t 0 escape-time 20` for faster cursor movement.
+* I recommend adjusting the key repeat speed of your OS (for faster cursor movement).
+
+== 66 commits in 10 steps
+
+=== 1. Getting started
+
+https://www.gnu.org/software/emacs/download.html[Install] the latest version of Emacs. Configuration files are located at `~/.emacs.d`:
+
+[source,sh]
+----
+$ mkdir ~/.emacs.d
+$ cd ~/.emacs.d
+$ : > init.el
+----
+
+Also, I made an alias `em='emacs -nw'`, which starts Emacs in terminal.
+
+If you try {doom-emacs} or {spacemacs} alongside your `~/.emacs.d`, try {chemacs}, as the Doom Emacs doc https://github.com/hlissner/doom-emacs/blob/develop/docs/faq.org#how-do-i-use-doom-alongside-other-emacs-configs[says].
+
+==== Initial commits
+
+https://github.com/toyboot4e/evil-emacs-2020/tree/dcc59741a9e667a15cb4da82a513a8ffcf325efc[After the first four commits], I got ready to start `emacs`:
+
+* I split my `init.el` into three files: `evil.el`, `ide.el` and `keymap.el`.
+* I didn't want Emacs to make backup files (where edited files are).
+* I made sure to use UTF-8.
+
+=== 2. Become Evil
+
+I became {evil}:
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/3d646f0cf96e4bd495190f548f948100bbe95144[3d646f0]: set up {use-package}
+* https://github.com/toyboot4e/evil-emacs-2020/commit/ce8f3c1957cdf0c756efc181f9078492928ad383[ce8f3c1]: add {evil} anyways
+
+I wanted to be comfortable to edit `init.el` on Emacs:
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/0a1a9137b5d7bd21f7aab68989781a9074bae2b1[0a1a913]: use C-z for SIGTSTP
++
+Press Control + z (`C-z`) to make Emacs a background process and make commits with `git`! Run `fg` to come back to Emacs. Later I'll add https://magit.vc/[magit] to use `git` in Emacs. I'm not yet familar with it though.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/91f29132c07e2fa519bdbe593044a73d806a19c6[91f2913]: set color scheme
++
+Choose colors of your choice! I'm using https://github.com/sjrmanning/darkokai[darkokai] this time:
++
+image::darkokai.png[]
++
+More configurations coming soon..
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/1e4df40c603812a8cdf91f74236832bceae4ed0b[1e4df40]: format ELisp automatially
++
+Please! Also, now press `zm` to fold all and `zr` to open all. Press `za` to toggle. This is thanks to `hs-minor-mode` (hide-show minor mode).
++
+Considering folds, my ELisp files use this style of headers: `----... Header title ...---`.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/a717f2b542a7904b19dc83f4f6c1b9a8701dcbc6[a717f2b]: add ex commands
++
+I use `:ed` to open `init.el`, `:s` to source (load) it. Mistake: the `evil-split-buffer` is actually `evil-window-split`. Sorry!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/8a26cf83387bc567b9da591a7d319030348402fd[8a26cf8]: enable undo with Evil
++
+Enable `C-r` (`<C-r>` in Vim's notation) using https://www.emacswiki.org/emacs/UndoTree[undo-tree]. You can use other backends, too.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/1b4a7fcb5c8c3e5be4a08f4399a6f4e4285c8ce8[1b4a7fc]: open only one window on startup
++
+If we start `emacs` with multiple arguments (files), they'll be opened in split windows, or a filer starts. I fixed it to start with only one window like Vim. Different from Vim, Emacs opens the last file of arguments; if we run `emacs -nw a b c`, Emacs opens `c` (while Vim opens `a`). Let me know if you can change Emacs to open `a` in this case.
+
+=== 3. More like Evil
+
+We're not ready to use Emacs like Vim!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/d037aeb50a62d0075dccf5c6382022606e5ed16c[d037aeb]: configure Evil
++
+{evil} tries not to overwrite Emacs defaults, but I'd rather want Vim-like settings.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/cefc6ecf55f08e3971ce733e1871a3503ed187c5[cefc6ec]: practical Vim
++
+Surround and expand region like done in http://vimcasts.org/publications/[Practical Vim]!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/fa4ed5f69f0354a49e6f6b251d5ee567d4a18c9c[fa4ed5f]: add which-key
++
+Show keys after prefix automatically (this is `C-w`):
++
+image::which-key.png[]
++
+Also, show keys in a _major mode_ with `C-h M`!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/f69f4b347cc962012ddcd4810ffd9955b48effbd[f69f4b3]: show help with K
++
+https://github.com/neoclide/coc.nvim[coc.nvim] recommends showing hints on cursor with `K`. I wanted to do something similar with {helpful}.
++
+Other option would be http://blog.jenkster.com/2013/12/popup-help-in-emacs-lisp.html[Popup Help In Emacs Lisp]. That's awesome but I wasn't able to show {helpful} help with `popup.el`, so I ended up with this commit.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/ed67456877a583ef1e03acbb95adee785dad5372[ed67456]: hide more and show more 
++
+Please!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/72f1ed4b4fa59a0cc6ba4e8ba9f68b2256c9d720[72f1ed4]: input support for terminal
++
+I don't know how to use the `+` register (clipboard) on terminal (https://github.com/emacs-evil/evil/issues/380[evil#380]). OMG. I'm using `:copy` to copy to  clipboard with https://github.com/spudlyo/clipetty[clipetty]. But then it's a bit verbose to do domething like `"+dd"`. Also clipetty https://github.com/spudlyo/clipetty/issues/23[can't copy long text on Kitty terminal] at least for now. So my terminal support is not a 100% thing.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/6329ad4b03f2381849297ca6d4f2ed571dd866cc[6329ad4]: scroll like Vim
++
+Please!
+
+=== 4. Emacs is our yard
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/7eb498a75b1fe64234d2c0808edb495aa385388f[7eb498a]: add {git-gutter}
++
+Show diffs on the line numbers! Use _fringe_ version of it in GUI.
++
+image::git-gutter.png[]
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/f135123ca01f93ba2c94e8d7f092f3c51d1a1a88[f135123]: add more highlights
++
+Rainbow parentheses and `TODO` highlight!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/c6c252e46fb8b18762cd6e1cfaf4b4043b5a46ba[c6c252e]: enable builtin packages
+
+** https://www.emacswiki.org/emacs/RecentFiles[recentf]: remember recently opened files.
+** https://www.emacswiki.org/emacs/SaveHist[savehist-mode]: save command history.
+** https://www.emacswiki.org/emacs/SavePlace[save-place-mode]: remember cursor positions per file.
+** https://www.emacswiki.org/emacs/RevertBuffer[auto-revert-mode]: sync buffers to storage (when an external program modifies them).
+** https://www.emacswiki.org/emacs/uniquify[uniquify]: diffentinate duplicate file names (as `file-name<dir>`).
++
+Auto-generated files by the packages will be put in `~/.emacs.d/tmp`.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/5066f0ebf61eafc86dea0977c2bfde0742a70ae5[5066f0e]: add hack to re-center cursor position for `save-place-mode`
++
+https://www.emacswiki.org/emacs/SavePlace[save-place-mode] places our cursor at the bottom of the window. I don't want to look for the cursor and press `zz` everytime I open a file, so this hack is helpful.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/03346f1ff391af65c223b9bfe2bf0a27cc22819e[03346f1]: add https://github.com/emacs-dashboard/emacs-dashboard[dashboard]
++
+It's good for selecting a project when we start Emacs from GUI. Later I'll polish.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/aed80fcc4e9ddf3e4b11631f345a3f1a9bbb4d26[aed80fc]: add doom-modeline
++
+https://seagle0128.github.io/doom-modeline/[doom-modeline] is a better version of bottom bar.
+
+=== 5. Even eviler
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/0aead1943a72dd0a2949d864fe72d06f9c0a838d[0aead19]: be Evil everywhere
++
+I didn't like Evil/Emacs context switching (when entering `pass:[*Messages*]` etc.).
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/a7fff79188cebb8be75f596c31c33a771ee76cfe[a7fff79]: add https://github.com/syl20bnr/evil-escape[evil-escape]
++
+Press `jk` or `kj` to quit.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/a0ab641ee36a6e7500b7c8e05c425dda3a9f18ec[a0ab641]: EVIL
++
+Add more essential Evil settings.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/38b3e2fe4b27faa10e34d88cad4711723cc917d7[38b3e2f]: add Evil policies 
++
+Map `x` to `"_x`, `n` to `nzz`, etc. I forgot to add this function, sorry:
++
+[source,elisp]
+----
+(defun toy/force-center()
+    (evil-scroll-line-to-center (line-number-at-pos)))
+----
+
+=== 6. Key mappings
+
+Some mappings are on my taste, others are useful to other Vimmers, too.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/6a3f0959b24048e4f25982c47d9843911a033c94[6a3f095]: add Emacs-like key mappings
++
+I'm on mac so this is natural; those mappings are available in almost every other app on mac.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/3c6846160f5f81884a0c91daa38adf47957f64ca[3c68461]: add misc key mappings
++
+`SPC /`: toggle comment, `C-s`: return to normal mode and save.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/50e0fb38716d462a6364e0ef4f5310da2d080dd8[50e0fb3]: add [] mappings
++
+Like https://github.com/tpope/vim-unimpaired[unimpaired.vim].
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/9b63723e508ac4c914add1eea09afd495cb0879e[9b63723]: skip pass:[^*] buffers with ]b and [b
++
+I wanted to not cycle through buffers such as `pass:[*Messages*]` or `pass:[*Warnings*]` with `]b` or `[b`. Just skip them all! When we need, we can visit those files with a fuzzy finder (added later).
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/551a61ff34d39f172c03ea6a76ed0f87a3fddabb[551a61f]: add {centaur-tabs}
++
+It makes groups of buffers and shows them on windows. *Super nice*. To me, it's one of the killer features of Emacs.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/031554fd746be63644f9f06ba5ad90c548157660[031554f]: use ]w and [w to cycle through windows
++
+I love this.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/24bac64451488c08860ee4cdb1bfc9621e1e5037[24bac64]: add evil packages
++
+That is, https://github.com/ninrod/evil-string-inflection[evil-string-inflection] and https://github.com/edkolev/evil-lion[evil-lion]. I use evil-lion's motions to align tables in https://asciidoctor.org/docs/what-is-asciidoc/[AsciiDoc] files.
++
+Later I'll add https://github.com/redguardtoo/evil-matchit[evil-matchit] (they fixed https://github.com/redguardtoo/evil-matchit/issues/129[my bug report] in one day!).
+
+=== 7. Even rich (fuzzy finder support)
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/b389aaa33c824ea98124a236a619ea51e94e5dc9[b389aaa]: add company (COMP-lete ANY-thing)
++
+Now even ELisp is easier to edit! There are too many things that deserves "the first thing to do". Also I made sure we can use `C-n` and `C-p` to cycle through completion items.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/81ca75f6203964dea4b553ca55b8aebb8404d5fd[81ca75f]: add https://github.com/abo-abo/swiper[Ivy] and https://github.com/bbatsov/projectile[Projectile]
++
+Ivy is our fuzzy finder. Key mappings will be added later. I also added https://github.com/Yevgnen/ivy-rich[ivy-rich], which makes Ivy, well, rich. Don't miss it! Projectile is the de-fact project manager of Emacs. Even if we don't directly call their methods, some packages do.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/5772dcb380533ddabd34c740e939ea3887158142[5772dcb]: add keys to Ivy mapping
++
+*I don't use meta key and super key* so I added some control+key mappings. Press `C-l` to preview, `C-k` to kill. Press `C-,` to open menu. `C-f` and `C-b` are also useful. Later we'll add {hydra}, then press `C-o` to open ivy-hydra.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/4021588bad8b77baf075f5c1e259dcfb6b902a1a[4021588]: add counsel
++
+https://github.com/abo-abo/swiper[counsel] is a set of fuzzy finding functions. I mapped `i_CTRL-r` to one in the package.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/13dac18209f49b3a1420bf4155a155a76b10ff10[13dac18]: add all-the-icons
++
+For GUI.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[7986330]: add counsel mappings
++
+Now, the fuzzy finder is in our hands!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/bcb67cd9655412060ed11f717b2015035beadbe3[bcb67cd]: translate ESC and C-c to C-g in non-Evil mode
++
+This is useful in Ivy minibuffers (spawned by a counsel function). Other option would be using https://github.com/emacs-evil/evil-collection[evil-collection].
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/b7ce0fcbc6422fa3c551d99097cb27ab9004d1fa[b7ce0fc]: add swiper
++
+https://github.com/abo-abo/swiper[swiper] is "an Ivy-enhanced alternative to isearch". I mapped `*` to search with `swiper`. Also I added `SPC gb` for grep this buffer and `SPC gB` for grep all buffers.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/5dbd1d2f6c193973e42f47db071ac9417b5d8c46[5dbd1d2]: update packages every 7 day
++
+I should have done it earlier.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/07814b494d7952ab7862955678876b39461736e2[07814b4]: put projectile cache files in tmp/ directory
++
+Plz
+
+https://github.com/toyboot4e/evil-emacs-2020/commit/0de195a587e4b017022b31479e7b5b5bd73ef970[0de195a]: add neotree
++
+image::neotree.png[]
++
+{neotree} is an alternative to NERDTree in Vim. {neotree} is easy to use, but {treemacs} supports multiple root directories, so I'd try {treemacs} later (it's not included in this repo).
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/8e856f11d57e5b2ff7b41292b155968a2775d744[8e856f1]: add keys to neotree-mode-map
++
+Settings on my taste.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/376bdbe2dc06a450aa6cd15049af42d824b819b6[376bdbe]: add neotree keys
++
+Same.
+
+Now our Emacs is intelligent enough! Language server supports will be added later.
+
+=== 8. Emacs is our home
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/2eca4937b5627eb8f421686a56ddf49eaad01715[2eca493]: add GC configuration
++
+1.5x faster startup time (acoording to `emacs-init-time`)!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/daa2fe10fe85a51e37985f66b747cf1de7f5f9f4[daa2fe1]: add early-init.el
++
+Even faster startup!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/691511c44b88a77c226f38efe85fda4194dfc103[691511c]: add olivetti and zoom-window
++
+https://github.com/rnkn/olivetti[olivetti] is a per-buffer distraction-free writing mode. Awesome! The drawback is that our `gj` and `gk` don't make sense in that mode. https://github.com/emacsorphanage/zoom-window[zoom-window] is for maximizing one window.
++
+Alternatives to olivetti would be https://github.com/joaotavora/darkroom[darmroom] and https://github.com/joostkremers/writeroom-mode[writeroom-mode].
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/fd63099b5c0803f6f6e85d6903a0bd37626dec1c[fd63099]: highlight DSLs
++
+Including markup languages.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/7a4b5eac0d0ff47ac137a5c18783f58d22ec8132[7a4b5ea]: add https://magit.vc/[magit]
++
+Start `magit` in other window or the full frame (with `olivetti`, which alignes `magit` to the center of the frame).
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/d9d928d2abe682a981868c1016fce98b55e689d9[d9d928d]: oooh fix :hs
++
+Fix to an earlier commit.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/c10c23e8a3fc7627041271fd4de005f432112dab[c10c23e]: add hydra and toy/hydra-window
++
+Press `SPC w` to enter window mode created with {hydra}!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/00e47b52edf4fcd030f3a2f79d6c8ad133234f1d[00e47b5]: fix path of .last-package-update-day
++
+Fix to an earlier commit.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/6673c3146bbbd6f40e0a78cacea08019f2651664[6673c31]: add toy/reset
++
+Press `SPC SPC SPC x` to kill almost all buffers and come back to the dashboard.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/e6b2a39b29885411a1290d7d3f8e896b827aa3e0[e6b2a39]: polish init.el
++
+Just some refactoring.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/cc99d41363cfe8284d7cb2e656b298e7b2a65e8e[cc99d41]: add missing toy/force-center
++
+Fix to earlier commits.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/a115b4d983f810626a06895cbc20ba535f677b99[a115b4d]: put magit files in tmp/
++
+`traisient` is now in `tmp`!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/18198690643dac127eae9d78d4c4bb81f7111b2a[1819869]: add details
++
+I needed these small utilities.
+
+=== 9. Emacs is an Intelligent Development Environment
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/ef996ee529e051102c69626406232462d3b8dfff[ef996ee]: set up PATH and exec-path
++
+LSP servers are found from `PATH` so this is an important setting.
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/f218bbd4805d307ba2f8d3ab8b34ad186dc1e070[f218bbd]: add https://github.com/redguardtoo/evil-matchit[evil-matchit]
++
+Not related LSP. They fixed my https://github.com/redguardtoo/evil-matchit/issues/129[bug report] in one day so I added it!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/d0a8754cd8e5c42ac886e75c6776fa23eecddf20[d0a8754]: add lsp-mode and rustic
++
+Please refer to the `lsp-mode` documentaions below to make sure your `lsp-mode` runs fast enough!
++
+Now we can edit Rust programs with LSP supports. Seems like it's not perfect, e.g., when I use `include_file!` in my sys crate.. but looks good overall!
+
+* https://github.com/toyboot4e/evil-emacs-2020/commit/c423c4cdbb52d713608d80cc9080ef1b83613659[c423c4c]: add lsp-treemacs
+
+==== LSP mode
+
+I'm not quiet sure about `lsp-mode` configuration. Please refer to their awesome websites:
+
+* https://emacs-lsp.github.io/lsp-mode/[lsp-mode]
+** https://emacs-lsp.github.io/lsp-mode/page/performance/[Performance]
+** https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/[A guide on disabling/enabling lsp-mode features]
+* https://emacs-lsp.github.io/lsp-ui/[lsp-ui]
+
+=== 10. TODOs
+
+* More comfortable key mappings, especially in LSP error lists (flycheck and treemacs).
+* The Evil/Emacs context switching is not perfect. I need more fix.
+* In-editor terminal support. Maybe in a floating terminal (is it possible in terminal?) or a VSCode-like terminal pane.
+* GUI support (awesome {posframe} etc.).
+* Workspace support: builtin tab mode, https://github.com/knu/elscreen[elscreen], https://github.com/Bad-ptr/persp-mode.el[persp-mode], https://github.com/wasamasa/eyebrowse[eyebrowse] and more. I'd look into them.. when I have time.
+
+== Done!
+
+Thank you for reading.. if anyone is there :)
+
+I used to not like every details of Evil Emacs, but now, I'm thinking the opposite. Still, some features like clipboard don't work well on terminal, so I need more polish.
+
+=== Notes
+
+`emacs-init-time` _says_ it took 1.07 seconds to start my `emacs` with my Rust files, but it's actually 3x longer (maybe to set up LSP). For plain text files, my `emacs -nw` is fast enough.
+
+I didn't use `after-init-hook` because I didn't think it made sense. `after-init-hook` is run after `emacs-init-time`, so `after-init-hook` pretends faster startup, which is obviously not a good thing. Just my curious, but is there any real pros? If so, I'd like to make changes.
+
+I didn't use https://github.com/emacs-evil/evil-collection[evil-collection] because I was not sure what it was doing.
+
+I didn't consider using byte compilation. Because it didn't contribute to even `0.01` sec of time. Also, I don't know how to use `use-package` when we split our `init.el`; I couldn't call `use-package` in a file where `use-package` is not boostrapped.
+
+
+=== What's next
+
+* We didn't get key mappnings to open/goto a file in other window. I'd figure out how to do it.
+* We can't easily fork packages. We can switch from `package.el` to {straight-el}.
+* {leaf-el} should be a better version of {use-package} (though I don't have a plan to give it a try).
+* Now `which-key` is not showing beautiful tips (some are `lambda`, which is no information). We can use {general-el} to set both key bindings and `which-key` comments at the same time.
+* We don't have multi-root directory supports in the sidebar. {treemacs} does.
+* I didn't look into https://github.com/ubolonton/emacs-tree-sitter[emacs-tree-sitter], which provides better code highlighting.
+
+=== References
+
+* https://evil.readthedocs.io/en/latest/index.html[Evil - Documentation]
+* {evil-guide}
+
