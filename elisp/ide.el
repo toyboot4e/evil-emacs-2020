@@ -62,7 +62,7 @@
           centaur-tabs-show-navigation-buttons nil
           centaur-tabs-set-icons (display-graphic-p)
           )
-    ;; (centaur-tabs-group-by-projectile-project)
+    (centaur-tabs-group-by-projectile-project)
 
     (centaur-tabs-headline-match)
     (centaur-tabs-mode t))

@@ -242,11 +242,13 @@
     " :" #'counsel-M-x
     " ;" #'shell-command
 
+    " q" #'evil-quit           ;; close window
     " c" #'kill-this-buffer    ;; kill buffer
     " C" #'evil-delete-buffer  ;; kill buffer and close the window
 
     ;; neotree
     " nn" #'toy/neo-proj
+    " nr" #'neotree-refresh
     " nt" #'neotree-toggle
     " nf" #'neotree-find
     " nq" #'neotree-quick-look
@@ -315,10 +317,15 @@
     (dashboard-insert-startupify-lists)
     (switch-to-buffer dashboard-buffer-name)
 
-    (dashboard-jump-to-projects)
     (toy/force-center))
 
 (evil-define-key 'normal 'global
     "   x" #'toy/reset
     )
+
+;; ------------------------------ Japanese ------------------------------
+
+;; 句読点ジャンプ
+(define-key evil-read-key-map (kbd "C-j") (kbd "、"))
+(define-key evil-read-key-map (kbd "C-l") (kbd "。"))
 
