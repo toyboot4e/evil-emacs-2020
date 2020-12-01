@@ -83,5 +83,5 @@ https://github.com/jaypei/emacs-neotree[neotree] (configuration https://github.c
 
 . Is there an alternative to https://github.com/junegunn/fzf.vim[fzf.vim] and https://github.com/yuki-ycino/fzf-preview.vim[fzf-preview.vim]?
 +
-https://github.com/abo-abo/swiper[abo-abo/swiper] (Ivy, Counsel and Swiper) is the most popular packages today. Use `counsel` functions to invoke fuzzy finders (https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[my key mappings]). I also addded https://github.com/toyboot4e/evil-emacs-2020/commit/5772dcb380533ddabd34c740e939ea3887158142[my key mappings] to preview/kill buffer (only using control key).
+https://github.com/abo-abo/swiper[abo-abo/swiper] (Ivy, Counsel and Swiper) is the most popular packages today. Use `counsel` functions to invoke fuzzy finders (https://github.com/toyboot4e/evil-emacs-2020/commit/79863307695a4eb2d6c2c6d782dddf086925be7c[my key mappings]). I also added https://github.com/toyboot4e/evil-emacs-2020/commit/5772dcb380533ddabd34c740e939ea3887158142[my key mappings] to preview/kill buffer (only using control key).
 

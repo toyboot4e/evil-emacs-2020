@@ -375,6 +375,8 @@ I'm not quiet sure about `lsp-mode` configuration. Please refer to their awesome
 
 It would not be that difficult after coming to this place. We've done lots of configurations.
 
+image::emacs.png[]
+
 === 10. TODOs
 
 * More comfortable key mappings, especially in LSP error lists (flycheck and treemacs).

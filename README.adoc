@@ -16,6 +16,8 @@ This repostory is for Vimmers to use Emacs as a first-class editor. The latest f
 +
 Expected questions to become evil.
 
+image::readme/emacs.png[]
+
 == Note
 
 === Environment
