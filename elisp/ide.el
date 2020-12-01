@@ -1,6 +1,10 @@
 ;; Put auto-generated files in `tmp` directory
-(setq projectile-cache-file  (concat user-emacs-directory "tmp/projectile.cache")
-      projectile-known-projects-file  (concat user-emacs-directory "tmp/projectile-bookmarks.eld")
+(setq projectile-cache-file (concat user-emacs-directory "tmp/projectile.cache")
+      projectile-known-projects-file (concat user-emacs-directory "tmp/projectile-bookmarks.eld")
+      ;; magit
+      transient-history-file (concat user-emacs-directory "tmp/transient/history.el")
+      transient-values-file (concat user-emacs-directory "tmp/transient/values.el")
+      transient-levels-file (concat user-emacs-directory "tmp/transient/levels.el")
       )
 
 ;; ------------------------------ Widgets ------------------------------
