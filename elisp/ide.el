@@ -7,10 +7,21 @@
       transient-levels-file (concat user-emacs-directory "tmp/transient/levels.el")
       )
 
+;; Set up `PATH` and `exec-path`
+(dolist (dir (list "/sbin" "/usr/sbin" "/bin" "/usr/bin" "/opt/local/bin" "/sw/bin"
+                   "~/.cargo/bin" "/usr/local/bin"
+                   "~/bin"
+                   ))
+
+    (when (and (file-exists-p dir) (not (member dir exec-path)))
+        (setenv "PATH" (concat dir ":" (getenv "PATH")))
+        (setq exec-path (append (list dir) exec-path))))
+
 ;; ------------------------------ Widgets ------------------------------
 
 ;; Zoom in to a pane: https://github.com/emacsorphanage/zoom-window
-(use-package zoom-window)
+(use-package zoom-window
+    :commands (darkroom-mode))
 
 ;; Zen mode *per buffer* (not per frame and that is great!)
 (use-package olivetti
