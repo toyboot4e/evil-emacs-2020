@@ -9,6 +9,20 @@
     ;; windswap-left|right|up|down
     :commands (windswap-up windswap-down windswap-left windswap-right))
 
+(defun toy/sp-W ()
+    "Split west."
+    (interactive)
+    (evil-window-vsplit)
+    ;; without focusing to it
+    (evil-window-right 1))
+
+(defun toy/sp-N ()
+    "Split north."
+    (interactive)
+    (evil-window-split)
+    ;; without focusing to it
+    (evil-window-down 1))
+
 (defvar toy/expand-unit 5)
 
 (defhydra toy/hydra-window (:color red :hint nil)
@@ -19,7 +33,7 @@ wasd: split     c/q: close
 WASD: swap      x: kill, X: both
 "
 
-    ("u" winner-undo)
+    ("u" #'winner-undo)
     ;; doesn't work
     ;; ("C-r" winner-redo)
 

@@ -330,7 +330,7 @@ Fix to an earlier commit.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/c10c23e8a3fc7627041271fd4de005f432112dab[c10c23e]: add hydra and toy/hydra-window
 +
-Press `SPC w` to enter window mode created with {hydra}!
+Mistake: please refer to the https://github.com/toyboot4e/evil-emacs-2020/blob/main/elisp/hydra.el[latest file]. Now, press `SPC w` to enter window mode created with {hydra}!
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/00e47b52edf4fcd030f3a2f79d6c8ad133234f1d[00e47b5]: fix path of .last-package-update-day
 +
