@@ -134,13 +134,15 @@ Please!
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/72f1ed4b4fa59a0cc6ba4e8ba9f68b2256c9d720[72f1ed4]: input support for terminal
 +
-I don't know how to use the `+` register (clipboard) on terminal (https://github.com/emacs-evil/evil/issues/380[evil#380]). OMG. I'm using `:copy` to copy to  clipboard with https://github.com/spudlyo/clipetty[clipetty]. But then it's a bit verbose to do domething like `"+dd"`. Also clipetty https://github.com/spudlyo/clipetty/issues/23[can't copy long text on Kitty terminal] at least for now. So my terminal support is not a 100% thing.
+I don't know how to use the `+` register (clipboard) on terminal (https://github.com/emacs-evil/evil/issues/380[evil#380]). OMG. I added `:copy` command to copy to  clipboard with https://github.com/spudlyo/clipetty[clipetty]. But then it's a bit verbose to do domething like `"+dd"`. Also clipetty https://github.com/spudlyo/clipetty/issues/23[can't copy long text on Kitty terminal] at least for now. So my terminal support is not a 100% thing.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/6329ad4b03f2381849297ca6d4f2ed571dd866cc[6329ad4]: scroll like Vim
 +
 Please!
 
 === 4. Emacs is our yard
+
+Now we need better looks and some utilities!
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/7eb498a75b1fe64234d2c0808edb495aa385388f[7eb498a]: add {git-gutter}
 +
@@ -168,13 +170,15 @@ https://www.emacswiki.org/emacs/SavePlace[save-place-mode] places our cursor at 
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/03346f1ff391af65c223b9bfe2bf0a27cc22819e[03346f1]: add https://github.com/emacs-dashboard/emacs-dashboard[dashboard]
 +
-It's good for selecting a project when we start Emacs from GUI. Later I'll polish.
+It's good for selecting a project when we start Emacs from GUI. Later I'll polish a bit.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/aed80fcc4e9ddf3e4b11631f345a3f1a9bbb4d26[aed80fc]: add doom-modeline
 +
 https://seagle0128.github.io/doom-modeline/[doom-modeline] is a better version of bottom bar.
 
 === 5. Even eviler
+
+Some details for Vimmers..
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/0aead1943a72dd0a2949d864fe72d06f9c0a838d[0aead19]: be Evil everywhere
 +
@@ -204,7 +208,7 @@ Some mappings are on my taste, others are useful to other Vimmers, too.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/6a3f0959b24048e4f25982c47d9843911a033c94[6a3f095]: add Emacs-like key mappings
 +
-I'm on mac so this is natural; those mappings are available in almost every other app on mac.
+I'm on mac so this is natural; those mappings are available in almost any other app on mac.
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/3c6846160f5f81884a0c91daa38adf47957f64ca[3c68461]: add misc key mappings
 +
@@ -233,6 +237,8 @@ That is, https://github.com/ninrod/evil-string-inflection[evil-string-inflection
 Later I'll add https://github.com/redguardtoo/evil-matchit[evil-matchit] (they fixed https://github.com/redguardtoo/evil-matchit/issues/129[my bug report] in one day!).
 
 === 7. Even rich (fuzzy finder support)
+
+Emacs is... nice :D
 
 * https://github.com/toyboot4e/evil-emacs-2020/commit/b389aaa33c824ea98124a236a619ea51e94e5dc9[b389aaa]: add company (COMP-lete ANY-thing)
 +
@@ -294,6 +300,8 @@ Now our Emacs is intelligent enough! Language server supports will be added late
 
 === 8. Emacs is our home
 
+Make Emacs a default editor for us!
+
 * https://github.com/toyboot4e/evil-emacs-2020/commit/2eca4937b5627eb8f421686a56ddf49eaad01715[2eca493]: add GC configuration
 +
 1.5x faster startup time (acoording to `emacs-init-time`)!
@@ -350,6 +358,8 @@ I needed these small utilities.
 
 === 9. Emacs is an Intelligent Development Environment
 
+After coming to this place, it's a peace of cake.
+
 * https://github.com/toyboot4e/evil-emacs-2020/commit/ef996ee529e051102c69626406232462d3b8dfff[ef996ee]: set up PATH and exec-path
 +
 LSP servers are found from `PATH` so this is an important setting.
@@ -364,6 +374,8 @@ Please refer to the `lsp-mode` documentaions below to make sure your `lsp-mode` 
 +
 Now we can edit Rust programs with LSP supports. Seems like it's not perfect, e.g., when I use `include_file!` in my sys crate.. but looks good overall!
 
+image::emacs.png[]
+
 * https://github.com/toyboot4e/evil-emacs-2020/commit/c423c4cdbb52d713608d80cc9080ef1b83613659[c423c4c]: add lsp-treemacs
 
 ==== LSP mode
@@ -374,10 +386,6 @@ I'm not quiet sure about `lsp-mode` configuration. Please refer to their awesome
 ** https://emacs-lsp.github.io/lsp-mode/page/performance/[Performance]
 ** https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/[A guide on disabling/enabling lsp-mode features]
 * https://emacs-lsp.github.io/lsp-ui/[lsp-ui]
-
-It would not be that difficult after coming to this place. We've done lots of configurations.
-
-image::emacs.png[]
 
 === 10. TODOs
 
