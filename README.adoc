@@ -4,6 +4,8 @@
 
 _Quick commits for Vimmers to become {evil}_
 
+**Outdated: use `consult`!**
+
 == Overview
 
 This repostory is for Vimmers to use Emacs as a first-class editor. The latest files are what I'm currently using and not an ultimate solution, but they could be helpful to other Vimmers, so I'm sharing them.
